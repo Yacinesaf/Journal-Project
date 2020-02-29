@@ -14,7 +14,7 @@ function NavPcVersion({ buttonStyle }) {
         </div>
         <Button style={buttonStyle}>Contact</Button>
         <Button style={Object.assign({}, buttonStyle, { margin: '0px 20px' })}>About</Button>
-        {isLoggedIn ? null : <Button variant='outlined' color='inherit' style={Object.assign({}, buttonStyle, { borderRadius: 2 })}>Get Started</Button>}
+        {isLoggedIn ? null : <Button variant='outlined' color='inherit' style={Object.assign({}, buttonStyle, { borderRadius: 4 })}>Get Started</Button>}
         {isLoggedIn ?
           <IconButton>
             <Avatar />
