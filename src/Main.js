@@ -1,6 +1,6 @@
 import React from 'react';
 import NavPcVersion from './NavPcVersion';
-import LoggedInPage from './LoggedInPage';
+import EntriesPage from './EntriesPage';
 import { Grid } from '@material-ui/core';
 
 function Main() {
@@ -15,7 +15,7 @@ function Main() {
       <NavPcVersion buttonStyle={buttonStyle} />
       <Grid container justify='center' style={{height : '100vh', paddingTop : 64, backgroundColor : '#F5F5F5'}}>
         <Grid item xs={12}>
-          <LoggedInPage buttonStyle={buttonStyle} />
+          <EntriesPage buttonStyle={buttonStyle} />
         </Grid>
       </Grid>
     </div>
