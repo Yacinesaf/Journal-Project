@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import '../style.css'
-import EntryCard from './EntryCard'
 import EntryCardWrapper from './EntryCard.Wrapper'
 import AddEntry from './AddEntry';
 
@@ -40,8 +39,8 @@ function EntriesPage({ userName }) {
         />
         {entries.length === 0 ? <img alt='empty' src="https://img.icons8.com/clouds/500/000000/folder-invoices.png" /> : null}
       </div>
-      <Grid container justify='center' style={{paddingTop : 100}}>
-        <Grid item xs={10} style={{display : 'flex'}}>
+      <Grid container justify='center' style={{paddingTop : 60}}>
+        <Grid item xs={9} style={{display : 'flex', flexWrap : 'wrap', justifyContent : 'center'}}>
           {entries.map((x, i) => (
             <EntryCardWrapper key={i} object={x} />
           ))}

@@ -3,27 +3,38 @@ import { Card, Typography } from '@material-ui/core';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
 import '../style.css'
+import { monthFormating } from '../services/helperFunctions'
 
-
-function EntryCard({object, img}) {
+function EntryCard({ object, img }) {
 
   const [favoriteClicked, setFavoriteClicked] = useState(false)
 
   return (
-    <Card className='cardShadow' style={{ height: 320, width: 250, borderRadius: 15, backgroundImage: `url(${img})`, backgroundPosition : 'center', backgroundSize : 'cover' , cursor : 'pointer', margin : '0px 15px' }}>
-      <div style={{ display: 'flex', padding: 20}}>
+    <Card className='cardShadow'
+      style={{
+        height: 320,
+        minWidth: 250,
+        borderRadius: 15,
+        backgroundImage: `url(${img})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        cursor: 'pointer',
+        margin: 10,
+      }}>
+      <div style={{ display: 'flex', padding: 20 }}>
         <div>
-          <Typography variant='subtitle1' style={{ color: 'white' }} >{object.date}</Typography>
-          <Typography variant='caption' style={{ color: 'white', display: 'block', fontWeight : 500 }} >{(object.month).toUpperCase()}</Typography>
-          <Typography variant='caption' style={{ color: 'white', fontWeight : 500 }} >{object.year}</Typography>
+          <Typography variant='subtitle1' style={{ color: 'white', float: 'left', textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.date}</Typography>
+          <Typography variant='caption' style={{ color: 'white', display: 'block', fontWeight: 500, textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{monthFormating(object.month).toUpperCase()}</Typography>
+          <Typography variant='caption' style={{ color: 'white', fontWeight: 500, textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.year}</Typography>
         </div>
-        <div onClick={()=> setFavoriteClicked(!favoriteClicked)} style={{paddingTop : 5, paddingLeft : 'calc((250px - 110px))'}}>
-          {favoriteClicked ? <StarIcon fontSize='small' style={{ color: 'white', cursor : 'pointer' }} /> : <StarBorderIcon fontSize='small' style={{ color: 'white', cursor : 'pointer' }} />}
+        <div onClick={() => setFavoriteClicked(!favoriteClicked)} style={{ paddingTop: 5, paddingLeft: 'calc((250px - 90px))' }}>
+          {favoriteClicked ? <StarIcon  style={{ color: 'white', cursor: 'pointer' }} /> : <StarBorderIcon style={{ color: 'white', cursor: 'pointer' }} />}
         </div>
       </div>
-      <div style={{height : 'calc(320px - 150px)', display: 'flex', alignItems : 'flex-end', padding : 20}}>
-        <Typography style={{color : 'white', fontWeight : 500}} >{object.title ? object.title : 'No title'}</Typography>
+      <div style={{ height: 'calc(320px - 150px)', display: 'flex', alignItems: 'flex-end', padding: 20 }}>
+        <Typography style={{ color: 'white', fontWeight: 500 }} >{object.title ? object.title : 'No title'}</Typography>
       </div>
+      <div style={{ backgroundColor: 'black', height: '100%', width: '100%', opacity: 1 }} />
     </Card>
   );
 }
