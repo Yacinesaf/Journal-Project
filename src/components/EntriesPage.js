@@ -1,7 +1,8 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-import './css.css'
-import EntryComponent from './EntryComponent'
+import { Typography, Grid } from '@material-ui/core';
+import '../style.css'
+import EntryCard from './EntryCard'
+import EntryCardWrapper from './EntryCard.Wrapper'
 import AddEntry from './AddEntry';
 
 
@@ -31,17 +32,21 @@ function EntriesPage({ userName }) {
     <div style={{ textAlign: 'center' }}>
       <div style={{ widht: '100%', textAlign: 'center' }}>
         <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 100, fontWeight: 400 }}>{`Welcome ${userName}!`}</Typography>
-        <AddEntry 
-        closeDialog={closeDialog} 
-        openDialog={openDialog} 
-        isDialogOpen={isDialogOpen} 
-        updateEntries={updateEntries}
+        <AddEntry
+          closeDialog={closeDialog}
+          openDialog={openDialog}
+          isDialogOpen={isDialogOpen}
+          updateEntries={updateEntries}
         />
         {entries.length === 0 ? <img alt='empty' src="https://img.icons8.com/clouds/500/000000/folder-invoices.png" /> : null}
       </div>
-      {entries.map((x,i) => (
-        <EntryComponent key={i} object={x} />
-      ))}
+      <Grid container justify='center' style={{paddingTop : 100}}>
+        <Grid item xs={10} style={{display : 'flex'}}>
+          {entries.map((x, i) => (
+            <EntryCardWrapper key={i} object={x} />
+          ))}
+        </Grid>
+      </Grid>
     </div>
   );
 }

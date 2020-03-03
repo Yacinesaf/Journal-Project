@@ -1,6 +1,6 @@
 import React from 'react';
-import NavPcVersion from './NavPcVersion';
-import EntriesPage from './EntriesPage';
+import NavPcVersion from './components/NavPcVersion';
+import EntriesPage from './components/EntriesPage';
 import { Grid } from '@material-ui/core';
 
 function Main() {

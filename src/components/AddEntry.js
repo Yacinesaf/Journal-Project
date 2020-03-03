@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AddIcon from '@material-ui/icons/Add';
-import './css.css'
+import '../style.css'
 import { Grid, Typography, Button, Dialog, DialogContent, TextField, TextareaAutosize, IconButton } from '@material-ui/core';
 
 
