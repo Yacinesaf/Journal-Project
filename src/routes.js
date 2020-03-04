@@ -2,11 +2,14 @@ import React from 'react';
 import { BrowserRouter, Route} from 'react-router-dom';
 import Main from './Main';
 import SignUpPage from './components/SignUpPage';
+import NavPcVersion from './components/NavPcVersion';
+
 
 const createRoutes = () => (
   <BrowserRouter>
-    <Route exact path='/home' component={Main}  />
-    <Route exact path='/Get-started' component={SignUpPage}  />
+    <NavPcVersion />
+    <Route exact path='/' component={Main}  />
+    <Route exact path='/signup' component={SignUpPage}  />
   </BrowserRouter>
 );
 

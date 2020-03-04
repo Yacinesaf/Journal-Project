@@ -23,7 +23,7 @@ function EntryCard({ object, img }) {
       }}>
       <div style={{ display: 'flex', padding: 20 }}>
         <div>
-          <Typography variant='subtitle1' style={{ color: 'white', float: 'left', textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.date}</Typography>
+          <Typography variant='h6' style={{ color: 'white', float: 'left', textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.date}</Typography>
           <Typography variant='caption' style={{ color: 'white', display: 'block', fontWeight: 500, textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{monthFormating(object.month).toUpperCase()}</Typography>
           <Typography variant='caption' style={{ color: 'white', fontWeight: 500, textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.year}</Typography>
         </div>

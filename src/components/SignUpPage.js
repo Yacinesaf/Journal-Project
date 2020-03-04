@@ -36,13 +36,13 @@ function SignUpPage() {
     setPassword(event.target.value)
   }
 
-  const isFormValid = () => {
+  const isFormValid = (email, password) => {
     return isEmailValid(email) && checkBoxChecked && isPasswordValid(password)
   }
 
 
     return (
-      <div style={{ background: 'linear-gradient(to right, #000000, #434343)', height: "100vh" }}>
+      <div style={{ background: 'linear-gradient(to right, #ff5f6d, #ffc371)', height: "100vh" }}>
 
         <Grid container direction="row" justify='center' alignItems="center" style={{ height: '100%' }}>
 
@@ -96,10 +96,10 @@ function SignUpPage() {
 
               <Button
                 onClick={() => {setShowSnackBar(true)}}
-                disabled={!isFormValid()}
+                disabled={!isFormValid(email, password)}
                 fullWidth={true}
                 variant="contained"
-                style={{ backgroundColor: isFormValid() ? '#212121' : '', color: isFormValid() ? 'white' : '' }}
+                style={{ backgroundColor: isFormValid(email, password) ? '#212121' : '', color: isFormValid(email, password) ? 'white' : '' }}
                 size='large'>
                 Sign Up
               </Button>
@@ -107,8 +107,8 @@ function SignUpPage() {
                 onClose={() => {setShowSnackBar(false)}}
                 open={showSnackBar}
                 autoHideDuration={3000}>
-                <Alert elevation={6} variant="filled" severity={isEmailValid() ? "error" : "succes"}>
-                  {isEmailValid ? 'You are Signed In !' : 'Incorrect inputs'}
+                <Alert elevation={6} variant="filled" severity={isFormValid(email, password) ? "success" : "error"}>
+                  {isFormValid(email, password) ? 'You are Signed In !' : 'Incorrect inputs'}
                 </Alert>
               </Snackbar>
             </Card>

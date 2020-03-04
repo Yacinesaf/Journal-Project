@@ -3,7 +3,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import AddIcon from '@material-ui/icons/Add';
 import '../style.css'
 import { Grid, Typography, Button, Dialog, DialogContent, TextField, TextareaAutosize, IconButton } from '@material-ui/core';
-
+import bgImg from '../formBackground.png'
 
 function AddEntry({ isDialogOpen, closeDialog, openDialog, updateEntries }) {
 
@@ -43,15 +43,14 @@ function AddEntry({ isDialogOpen, closeDialog, openDialog, updateEntries }) {
         fullScreen
         onEscapeKeyDown={closeDialog}
         open={isDialogOpen}
-        style={{ backgroundColor: '#F5F5F5' }}
       >
-        <DialogContent style={{ padding: 0 }}>
+        <DialogContent style={{paddingLeft : 50, backgroundImage : `url(${bgImg})`, backgroundSize : 'cover', backgroundPosition : 'center'}}>
           <IconButton onClick={closeDialog} style={{ float: 'right', paddingRight: 15 }}>
-            <CancelIcon fontSize='large' style={{ color: '#212121' }} />
+            <CancelIcon fontSize='large' style={{ color: '#5254aa' }} />
           </IconButton>
-          <Grid container justify='center'>
-            <Grid item xs={10}>
-              <Typography variant='h5' style={{ color: '#212121', fontWeight: 550, paddingBottom: 20 }} >Title</Typography>
+          <Grid container justify='space-between'>
+            <Grid item xs={6}>
+              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Title</Typography>
               <TextField
                 onChange={(e) => setJouranlTitle(e.target.value)}
                 required
@@ -60,14 +59,14 @@ function AddEntry({ isDialogOpen, closeDialog, openDialog, updateEntries }) {
                 id="title"
                 type="text"
                 fullWidth
-                style={{ margin: '0px 0px 40px' }}
+                style={{ margin: '0px 0px 40px', backgroundColor : 'white' }}
               />
-              <Typography variant='h5' style={{ color: '#212121', fontWeight: 550, paddingBottom: 20 }} >Write Your Day</Typography>
-              <TextareaAutosize onChange={(e) => setJouranlContent(e.target.value)} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 480, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16 }} />
+              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Write Your Day</Typography>
+              <TextareaAutosize onChange={(e) => setJouranlContent(e.target.value)} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 480, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16, backgroundColor : 'white' }} />
               <Button onClick={() => {
                 closeDialog();
                 updateEntries(generateEntry())
-              }} variant='contained' style={{ float: 'right', marginTop: 30, backgroundColor: '#212121', color: '#F5F5F5', fontSize: 18 }}>Submit</Button>
+              }} variant='contained' style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}>Submit</Button>
             </Grid>
           </Grid>
         </DialogContent>
