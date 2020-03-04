@@ -78,10 +78,14 @@ function EntriesPage({ userName }) {
         {entries.length === 0 ? <img alt='empty' src="https://img.icons8.com/clouds/500/000000/folder-invoices.png" /> : null}
       </div>
       <Grid container justify='center' style={{ paddingTop: 60 }}>
-        <Grid item xs={9} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-          {entries.map((x, i) => (
-            <EntryCardWrapper key={i} object={x} />
-          ))}
+        <Grid item xs={8} style={{ display: 'flex' }}>
+          <Grid container>
+            {entries.map((x, i) => (
+              <Grid key={i} item xs={3} style={{padding : 15}}>
+                <EntryCardWrapper object={x} />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
     </div>

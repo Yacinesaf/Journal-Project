@@ -7,6 +7,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import '../style.css'
 
 function SignUpPage() {
 
@@ -42,7 +43,7 @@ function SignUpPage() {
 
 
     return (
-      <div style={{ background: 'linear-gradient(to right, #ff5f6d, #ffc371)', height: "100vh" }}>
+      <div className='singupBackground' style={{height: "100vh" }}>
 
         <Grid container direction="row" justify='center' alignItems="center" style={{ height: '100%' }}>
 

@@ -61,7 +61,7 @@ function AddEntry({ isDialogOpen, closeDialog, openDialog, updateEntries }) {
                 fullWidth
                 style={{ margin: '0px 0px 40px', backgroundColor : 'white' }}
               />
-              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Write Your Day</Typography>
+              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >What's on your mind</Typography>
               <TextareaAutosize onChange={(e) => setJouranlContent(e.target.value)} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 480, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16, backgroundColor : 'white' }} />
               <Button onClick={() => {
                 closeDialog();

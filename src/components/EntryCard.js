@@ -13,22 +13,18 @@ function EntryCard({ object, img }) {
     <Card className='cardShadow'
       style={{
         height: 320,
-        minWidth: 250,
+        width: '100%',
         borderRadius: 15,
         backgroundImage: `url(${img})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         cursor: 'pointer',
-        margin: 10,
       }}>
       <div style={{ display: 'flex', padding: 20 }}>
         <div>
           <Typography variant='h6' style={{ color: 'white', float: 'left', textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.date}</Typography>
           <Typography variant='caption' style={{ color: 'white', display: 'block', fontWeight: 500, textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{monthFormating(object.month).toUpperCase()}</Typography>
           <Typography variant='caption' style={{ color: 'white', fontWeight: 500, textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.year}</Typography>
-        </div>
-        <div onClick={() => setFavoriteClicked(!favoriteClicked)} style={{ paddingTop: 5, paddingLeft: 'calc((250px - 90px))' }}>
-          {favoriteClicked ? <StarIcon  style={{ color: 'white', cursor: 'pointer' }} /> : <StarBorderIcon style={{ color: 'white', cursor: 'pointer' }} />}
         </div>
       </div>
       <div style={{ height: 'calc(320px - 150px)', display: 'flex', alignItems: 'flex-end', padding: 20 }}>
