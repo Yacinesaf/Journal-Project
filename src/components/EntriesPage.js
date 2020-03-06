@@ -5,11 +5,12 @@ import EntryCardWrapper from './EntryCard.Wrapper'
 import AddEntry from './AddEntry';
 import firebaseApp from '../firebase'
 import firebase from 'firebase/app'
+import EntriesStore from '../store/entries'
 
 function EntriesPage({ userName }) {
 
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  let [entries, setEntries] = React.useState([]);
+  let entries = EntriesStore.getAll();
 
 
   const getDocument = () => {
@@ -18,7 +19,7 @@ function EntriesPage({ userName }) {
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-          return doc.id
+          console.log("Document data:", doc.data());
         });
       })
 
@@ -56,10 +57,10 @@ function EntriesPage({ userName }) {
   };
 
   const updateEntries = (element) => {
-    setEntries((prevState) => {
-      prevState.push(element);
-      return prevState
-    })
+    // setEntries((prevState) => {
+    //   prevState.push(element);
+    //   return prevState
+    // })
   }
 
 
@@ -67,21 +68,21 @@ function EntriesPage({ userName }) {
     <div style={{ textAlign: 'center' }}>
       <div style={{ widht: '100%', textAlign: 'center' }}>
         <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 100, fontWeight: 400 }}>{`Welcome ${userName}!`}</Typography>
-        {/*<Button variant='contained' onClick={getDocument}>firebase</Button>
-        <Button variant='contained' onClick={deleteDocument}>delete documnet </Button>*/}
-        <AddEntry
+        <Button onClick={EntriesStore.fetchEntries}>get entries</Button>
+        {entries.length ? null : <AddEntry
           closeDialog={closeDialog}
           openDialog={openDialog}
           isDialogOpen={isDialogOpen}
           updateEntries={updateEntries}
-        />
-        {entries.length === 0 ? <img alt='empty' src="https://img.icons8.com/clouds/500/000000/folder-invoices.png" /> : null}
+          entries={entries}
+        />}
+        {entries.length ? null : <img alt='empty' src="https://img.icons8.com/clouds/500/000000/folder-invoices.png" />}
       </div>
       <Grid container justify='center' style={{ paddingTop: 60 }}>
         <Grid item xs={8} style={{ display: 'flex' }}>
           <Grid container>
             {entries.map((x, i) => (
-              <Grid key={i} item xs={3} style={{padding : 15}}>
+              <Grid key={i} item xs={3} style={{ padding: 15 }}>
                 <EntryCardWrapper object={x} />
               </Grid>
             ))}

@@ -43,7 +43,7 @@ function SignUpPage() {
 
 
     return (
-      <div className='singupBackground' style={{height: "100vh" }}>
+      <div className='appBackground' style={{height: "100vh" }}>
 
         <Grid container direction="row" justify='center' alignItems="center" style={{ height: '100%' }}>
 
