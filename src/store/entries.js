@@ -4,15 +4,26 @@ import { getEntries } from '../services/apiEndpoints'
 class EntriesStore extends EventEmitter {
   constructor() {
     super()
-    this.entries = [];
+    this.entries = [
+    ];
   }
+  createEntry() {
+    this.entries.push({
+      body : 'ssssss',
+      date : 24,
+      title : 'yes',
+      userId : Date.now()
+    })
+    this.emit('change')
+  }
+  
   getAll() {
-    console.log(this)
     return this.entries
   }
-  fetchEntries() {
-    console.log(this)
-  }
-}
+  // fetchEntries() {
+  //   console.log(this)
+  // }
 
-export default new EntriesStore();
+}
+const entriesStore = new EntriesStore();
+export default  entriesStore;
