@@ -4,14 +4,12 @@ import AddIcon from '@material-ui/icons/Add';
 import '../style.css'
 import { Grid, Typography, Button, Dialog, DialogContent, TextField, TextareaAutosize, IconButton } from '@material-ui/core';
 import bgImg from '../formBackground.png'
-import EntriesStore from '../store/entries'
-
 
 function AddEntry({ isDialogOpen, closeDialog, openDialog, updateEntries }) {
 
   const [journalTitle, setJouranlTitle] = useState('');
   const [journalContent, setJouranlContent] = useState('');
-  const entries = EntriesStore.getAll();
+  const entries = [];
   const generateEntry = () => {
     let date = new Date();
     return {

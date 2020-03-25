@@ -5,15 +5,11 @@ import EntryCardWrapper from './EntryCard.Wrapper'
 import AddEntry from './AddEntry';
 import firebaseApp from '../firebase'
 import firebase from 'firebase/app'
-import EntriesStore from '../store/entries'
 
 function EntriesPage({ userName }) {
 
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  let entries = EntriesStore.getAll();
-  EntriesStore.on('change', () => {
-    entries = EntriesStore.getAll();
-  })
+  let entries = []
 
   const getDocument = () => {
     let db = firebase.firestore(firebaseApp);
@@ -70,7 +66,7 @@ function EntriesPage({ userName }) {
     <div style={{ textAlign: 'center' }}>
       <div style={{ widht: '100%', textAlign: 'center' }}>
         <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 100, fontWeight: 400 }}>{`Welcome ${userName}!`}</Typography>
-        <Button onClick={EntriesStore.createEntry}>get entries</Button>
+
         {entries.length ? null : <AddEntry
           closeDialog={closeDialog}
           openDialog={openDialog}
