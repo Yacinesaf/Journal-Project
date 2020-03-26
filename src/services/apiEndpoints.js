@@ -1,7 +1,7 @@
 import axios from 'axios'
 import firebaseApp from '../firebase'
 import firebase from 'firebase/app'
-
+import {formatDate} from './helperFunctions'
 
 
 function getRandomImage() {
@@ -16,6 +16,7 @@ function getEntries() {
     .then(function (querySnapshot) {
       return querySnapshot.docs.map(doc => {
         let obj = doc.data();
+        obj.date = formatDate(obj.date);
         obj['id'] = doc.id
         return obj
       })

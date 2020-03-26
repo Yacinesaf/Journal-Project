@@ -1,5 +1,5 @@
 const initialState = {
-  entries: [],
+  entriesList: [],
   fetchingEntries: true
 }
 
@@ -11,6 +11,6 @@ export default function(state= initialState, action) {
       return {...state, fetchingEntries: action.payload}
 
     case 'SET_ENTRIES':
-      return {...state, entries: action.payload}
+      return {...state, entriesList: action.payload}
   }
 }
