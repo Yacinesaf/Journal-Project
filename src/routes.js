@@ -7,6 +7,7 @@ import AddEntry from './components/AddEntry';
 import { Provider } from 'react-redux'
 import Test from './components/Test'
 import store from './reduxStore/store';
+import EntryContent from './components/EntryContent';
 
 const createRoutes = () => (
   <Provider store={store}>
@@ -14,6 +15,7 @@ const createRoutes = () => (
       <NavPcVersion />
       { /* entries.length ? <AddEntry /> : null */ }
       <Route exact path='/' component={Main}  />
+      <Route exact path='/entries/:id' component={EntryContent} /> 
       <Route exact path='/test' component={Test}  />
       <Route exact path='/signup' component={SignUpPage}  />
     </BrowserRouter>
