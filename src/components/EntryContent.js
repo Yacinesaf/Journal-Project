@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import '../style.css'
 import { connect } from 'react-redux'
 import { getEntry } from '../services/apiEndpoints'
@@ -24,12 +24,36 @@ class EntryContent extends Component {
   render() {
     return (
       <div>
-        <Grid className='appBackground' container justify='center' style={{ minHeight: '100vh', paddingTop: 64 }}>
-          {this.state.entry ? <Grid item xs={10}>
-            <h1>{this.state.entry.title}</h1>
-            <p>{this.state.entry.body}</p>
-          </Grid> : null}
-        </Grid>
+        {this.state.entry ?
+          <Grid className='appBackground' justify='center' container style={{ minHeight: '100vh', paddingTop: 64 }}>
+            <Grid item xs={12} style ={{height : 350}}>
+              <Grid container>
+                <div style={{
+                  width: '100%',
+                  backgroundImage: `url(${this.state.entry.img})`,
+                  height: '100%',
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                }}
+                >
+                  <div style={{
+                    backgroundColor: 'rgba(0,0,0,.3)',
+                    height: '100%',
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }} >
+                    <Typography variant='h3' color='initial' style={{ color: 'white' }}>{this.state.entry.title}</Typography>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+            <Grid item xs={10}>
+              <Typography variant='subtitle1' style={{textAlign : 'center'}} >{this.state.entry.body}</Typography>
+            </Grid>
+          </Grid>
+          : null}
       </div>
     );
   }
