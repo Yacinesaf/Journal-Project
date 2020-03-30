@@ -20,7 +20,6 @@ class EntriesPage extends Component {
         <div style={{ textAlign: 'center' }}>
           <div style={{ widht: '100%', textAlign: 'center' }}>
             <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 100, fontWeight: 400 }}>Welcome Islam!</Typography>
-
             {!this.props.entries.length && !this.props.fetchingEntries ? <img alt='empty' src={emptyState} style={{ height: 700, width: 700 }} /> : null}
           </div>
           {this.props.fetchingEntries ?
@@ -99,13 +98,6 @@ export default connect(mapStateToProps, { fetchEntries })(EntriesPage)
 //       })
 //   }
 
-//   const openDialog = () => {
-//     setIsDialogOpen(true);
-//   };
-
-//   const closeDialog = () => {
-//     setIsDialogOpen(false);
-//   };
 
 //   const updateEntries = (element) => {
 //     // setEntries((prevState) => {
@@ -113,11 +105,4 @@ export default connect(mapStateToProps, { fetchEntries })(EntriesPage)
 //     //   return prevState
 //     // })
 //   }
-// {entries.length ? null : <AddEntry
-//   closeDialog={closeDialog}
-//   openDialog={openDialog}
-//   isDialogOpen={isDialogOpen}
-//   updateEntries={updateEntries}
-//   entries={entries}
-// />}
 // }
