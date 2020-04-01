@@ -12,5 +12,7 @@ export default function(state= initialState, action) {
 
     case 'SET_ENTRIES':
       return {...state, entriesList: action.payload}
+    case 'ADD_ENTRY' : 
+      return {...state, entriesList : [...state.entriesList, action.payload]}
   }
 }

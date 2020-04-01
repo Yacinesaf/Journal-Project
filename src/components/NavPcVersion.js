@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Toolbar, AppBar, Button, IconButton, Typography, Avatar } from '@material-ui/core';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { Link } from "react-router-dom";
 import '../style.css'
 

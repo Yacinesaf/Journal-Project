@@ -35,8 +35,20 @@ function getEntry(id) {
   })
 }
 
+function createEntry(obj) {
+  let db = firebase.firestore(firebaseApp);
+  return getRandomImage().then(res => {
+    obj['img'] = res;
+    let backendFormat = { ...obj, date: firebase.firestore.Timestamp.fromDate(new Date(`${obj.date.month} ${obj.date.day}, ${obj.date.year}`)) }
+    return db.collection("entries").add(backendFormat).then(function (doc) {
+      return { ...obj, id: doc.id }
+    })
+  })
+}
+
 export {
   getEntry,
   getRandomImage,
-  getEntries
+  getEntries,
+  createEntry
 }

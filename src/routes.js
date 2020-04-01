@@ -21,5 +21,4 @@ const createRoutes = () => (
     </BrowserRouter>
   </Provider>
 );
-console.log(store.getState().entries.entriesList)
 export default createRoutes;

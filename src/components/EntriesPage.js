@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import '../style.css'
-import AddEntry from './AddEntry';
 import { fetchEntries } from '../reduxStore/actions'
 import { connect } from 'react-redux'
 import EntryCard from './EntryCard';
@@ -59,50 +58,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { fetchEntries })(EntriesPage)
-// function EntriesPage() {
-
-//   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-
-//   const getDocument = () => {
-//     let db = firebase.firestore(firebaseApp);
-//     db.collection('entries')
-//       .get()
-//       .then(function (querySnapshot) {
-//         querySnapshot.forEach(function (doc) {
-//           console.log("Document data:", doc.data());
-//         });
-//       })
-
-//   }
-//   const addDocument = () => {
-//     let db = firebase.firestore(firebaseApp);
-//     db.collection('entries')
-//       .add({
-//         title: 'story of my life',
-//         body: 'sfdadsssssssssssssssadscvawsdv'
-//       })
-//       .then(function (docRef) {
-//         console.log(docRef)
-//       })
-
-//   }
-
-//   const deleteDocument = () => {
-//     let db = firebase.firestore(firebaseApp);
-//     let docId = getDocument();
-//     db.collection('entries')
-//       .doc(docId)
-//       .delete()
-//       .then(function () {
-//         console.log('Document successfully deleted!')
-//       })
-//   }
-
-
-//   const updateEntries = (element) => {
-//     // setEntries((prevState) => {
-//     //   prevState.push(element);
-//     //   return prevState
-//     // })
-//   }
-// }
