@@ -3,7 +3,7 @@ import { Typography, Grid } from '@material-ui/core';
 import '../style.css'
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+import '../style.css'
 
 function Entry({ title, body, reading }) {
   const theme = useTheme();
@@ -20,7 +20,7 @@ function Entry({ title, body, reading }) {
               <Typography variant='h4' style={{ textAlign: 'left' }} >{body}</Typography>
             </Grid>
             <Grid item xs={5}>
-              <div style={{
+              <div className='floating' style={{
                 position: "absolute",
                 backgroundImage: `url(${reading})`,
                 backgroundPosition: 'center',

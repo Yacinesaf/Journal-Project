@@ -1,6 +1,7 @@
 const initialState = {
   entriesList: [],
-  fetchingEntries: true
+  fetchingEntries: true,
+  creatingEntry : true,
 }
 
 export default function(state= initialState, action) {
@@ -14,5 +15,7 @@ export default function(state= initialState, action) {
       return {...state, entriesList: action.payload}
     case 'ADD_ENTRY' : 
       return {...state, entriesList : [...state.entriesList, action.payload]}
+    case 'SET_CREATING_ENTRY' :
+      return {...state, creatingEntry : action.payload}
   }
 }

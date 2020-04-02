@@ -9,7 +9,9 @@ export const fetchEntries = () => dispatch => {
 }
 
 export const addEntry = (entry) => dispatch => {
+  dispatch({ type: 'SET_CREATING_ENTRY', payload: true });
   createEntry(entry).then(function (obj) {
     dispatch({ type: 'ADD_ENTRY', payload: obj })
+    dispatch({ type: 'SET_CREATING_ENTRY', payload: false });
   })
 }

@@ -31,3 +31,21 @@
   background-attachment: fixed;
   background-size: cover;
 }
+
+.floating {
+  transform: translatey(0px);
+  animation: float 4s ease-in-out infinite;
+  overflow: hidden;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-10px);
+  }
+	100% {
+		transform: translatey(0px);
+	}
+}
