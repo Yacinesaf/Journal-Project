@@ -11,7 +11,7 @@ function getRandomImage() {
 
 function getEntries() {
   let db = firebase.firestore(firebaseApp);
-  return db.collection('entries')
+  return db.collection('entries').orderBy('date').limit(8)
     .get()
     .then(function (querySnapshot) {
       return querySnapshot.docs.map(doc => {

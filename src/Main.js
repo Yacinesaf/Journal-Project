@@ -1,5 +1,4 @@
 import React from 'react';
-import NavPcVersion from './components/NavPcVersion';
 import EntriesPage from './components/EntriesPage';
 import { Grid } from '@material-ui/core';
 import './style.css'
@@ -9,7 +8,6 @@ function Main() {
     textTransform: 'none',
     color: 'white'
   };
-  // <NavPcVersion buttonStyle={buttonStyle} />
 
   return (
     <div>

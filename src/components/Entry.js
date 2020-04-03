@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import '../style.css'
 import { useTheme } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import '../style.css'
 function Entry({ title, body, reading }) {
   const theme = useTheme();
   const xsOnly = useMediaQuery(theme.breakpoints.only('xs'));
+
   return (
     <div>
       <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ minHeight: '100vh', paddingTop: 64, backgroundColor: '#f2f2f2' }}>

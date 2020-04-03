@@ -65,41 +65,46 @@ class AddEntry extends Component {
           onEscapeKeyDown={() => this.setState({ isDialogOpen: false })}
           open={this.state.isDialogOpen}
         >
-          {!this.state.isLoading ?
-            <DialogContent style={{ paddingLeft: 50, backgroundColor: '#f4f6f8' }}>
-              <IconButton onClick={() => this.setState({ isDialogOpen: false })} style={{ float: 'right', paddingRight: 15 }}>
-                <CancelIcon style={{ color: '#5254aa', fontSize: 60 }} />
-              </IconButton>
-              <Grid container justify='center'>
-                <Grid item xs={5}>
-                  <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Title</Typography>
-                  <TextField
-                    onChange={(e) => this.setState({ journalTitle: e.target.value })}
-                    required
-                    variant='outlined'
-                    placeholder='Type your title here'
-                    id="title"
-                    type="text"
-                    fullWidth
-                    style={{ margin: '0px 0px 40px', backgroundColor: 'white' }}
-                  />
-                  <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >What's on your mind</Typography>
-                  <TextareaAutosize onChange={(e) => this.setState({ journalContent: e.target.value })} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 400, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16, backgroundColor: 'white' }} />
-                  <Button onClick={() => {
+          <DialogContent style={{ paddingLeft: 50, backgroundColor: '#f4f6f8' }}>
+            <IconButton onClick={() => this.setState({ isDialogOpen: false })} style={{ float: 'right', paddingRight: 15 }}>
+              <CancelIcon style={{ color: '#5254aa', fontSize: 60 }} />
+            </IconButton>
+            <Grid container justify='center'>
+              <Grid item xs={5}>
+                <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Title</Typography>
+                <TextField
+                  onChange={(e) => this.setState({ journalTitle: e.target.value })}
+                  required
+                  variant='outlined'
+                  placeholder='Type your title here'
+                  id="title"
+                  type="text"
+                  fullWidth
+                  style={{ margin: '0px 0px 40px', backgroundColor: 'white' }}
+                />
+                <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >What's on your mind</Typography>
+                <TextareaAutosize onChange={(e) => this.setState({ journalContent: e.target.value })} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 400, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16, backgroundColor: 'white' }} />
+                <Button
+                  disabled={this.state.isLoading}
+                  onClick={() => {
                     this.setState({ isLoading: true })
                     this.props.addEntry(this.generateEntry()).then(() => {
                       this.setState({ isLoading: false })
                       this.closeDialog()
                       this.setState({ showSnackbar: true })
                     });
-                  }} variant='contained' style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}>Submit</Button>
-                </Grid>
-                <Grid item xs={6} style={{ paddingTop: 120, paddingLeft: 20 }}>
-                  <div style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: 400 }} />
-                </Grid>
+                  }}
+                  variant='contained'
+                  style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}
+                >
+                  {this.state.isLoading ? <CircularProgress size={20} style={{color : 'white', padding : '5px 25px'}} /> : 'Submit'}
+                </Button>
               </Grid>
-            </DialogContent>
-            : <CircularProgress variant={this.state.isLoading ? 'indeterminate' : 'determinate'} />}
+              <Grid item xs={6} style={{ paddingTop: 120, paddingLeft: 20 }}>
+                <div style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: 400 }} />
+              </Grid>
+            </Grid>
+          </DialogContent>
         </Dialog>
         <Snackbar open={this.state.showSnackbar} autoHideDuration={2000} severity='success' onClose={() => this.setState({ showSnackbar: false })} >
           <Alert variant='filled' severity='success'>

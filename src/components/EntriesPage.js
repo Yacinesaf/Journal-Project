@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import EntryCard from './EntryCard';
 import emptyState from '../assets/emptyState.svg'
 import Skeleton from '@material-ui/lab/Skeleton';
+import Pagination from '@material-ui/lab/Pagination';
 import { Link } from "react-router-dom";
 
 
@@ -18,11 +19,11 @@ class EntriesPage extends Component {
       <div>
         <div style={{ textAlign: 'center' }}>
           <div style={{ widht: '100%', textAlign: 'center' }}>
-            <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 60, fontWeight: 400 }}>Welcome Islam!</Typography>
+            <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 40, fontWeight: 400 }}>Welcome Islam!</Typography>
             {!this.props.entries.length && !this.props.fetchingEntries ? <img alt='empty' src={emptyState} style={{ height: 700, width: 700 }} /> : null}
           </div>
           {this.props.fetchingEntries ?
-            <Grid container justify='center' style={{ paddingTop: 60 }}>
+            <Grid container justify='center' style={{ paddingTop: 20 }}>
               <Grid item xs={8} style={{ display: 'flex' }}>
                 <Grid container>
                   {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
@@ -34,7 +35,7 @@ class EntriesPage extends Component {
               </Grid>
             </Grid>
             :
-            <Grid container justify='center' style={{ paddingTop: 60 }}>
+            <Grid container justify='center' style={{ paddingTop: 20 }}>
               <Grid item xs={8} style={{ display: 'flex' }}>
                 <Grid container>
                   {this.props.entries.map((x, i) => (
@@ -46,7 +47,8 @@ class EntriesPage extends Component {
                   ))}
                 </Grid>
               </Grid>
-            </Grid>}
+            </Grid>} 
+            <Pagination count={10} color='primary' style={{display : 'flex', justifyContent : 'center', padding : 40}} />
         </div>
       </div>
     );

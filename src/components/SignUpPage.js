@@ -22,7 +22,8 @@ function SignUpPage() {
 
 
   const isEmailValid = (email) => {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
 
@@ -44,23 +45,16 @@ function SignUpPage() {
 
     return (
       <div className='appBackground' style={{height: "100vh" }}>
-
         <Grid container direction="row" justify='center' alignItems="center" style={{ height: '100%' }}>
-
           <Grid item xs={11} sm={8} lg={6} xl={3} style={{display : 'flex', justifyContent : 'center'}}>
-          
             <Card style={{ maxWidth: '365px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding : 30}} elevation={10}>
-
               <Avatar style={{ backgroundColor: '#212121', marginBottom : 12 }}  >
                 <LockOutlinedIcon />
               </Avatar>
-
               <Typography align='center' variant='h5'>
                 Sign Up
               </Typography>
-
               <form style={{ width: '100%' }}>
-
                 <TextField
                   error={!isEmailValid(email)}
                   helperText={isEmailValid(email) ? '' : emailErrorMsg}
@@ -69,7 +63,6 @@ function SignUpPage() {
                   style={{margin : '24px 0px'}}
                   fullWidth={true} label="Email Address"
                   variant="outlined" />
-
                 <TextField
                   onChange={changePassword}
                   error={!isPasswordValid(password)}
@@ -86,15 +79,12 @@ function SignUpPage() {
                   style={{marginBottom : 24}}
                   fullWidth={true} label="Password"
                   variant="outlined" />
-
                 <FormControlLabel
                   onClick={(e) => { e.preventDefault(); setCheckBoxChecked(!checkBoxChecked)}}
                   style={{ marginBottom: 24 }}
                   control={<Checkbox style={{ color: checkBoxChecked ? '#212121' : '' }} checked={checkBoxChecked} />}
                   label="Accept the terms & conditions" />
-
               </form>
-
               <Button
                 onClick={() => {setShowSnackBar(true)}}
                 disabled={!isFormValid(email, password)}
@@ -113,11 +103,8 @@ function SignUpPage() {
                 </Alert>
               </Snackbar>
             </Card>
-
           </Grid>
-
         </Grid>
-
       </div>
     )
   }
