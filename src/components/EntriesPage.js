@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import '../style.css'
-import { fetchEntries } from '../reduxStore/actions'
+import { fetchEntries, entriesTotalCount } from '../reduxStore/actions'
 import { connect } from 'react-redux'
 import EntryCard from './EntryCard';
 import emptyState from '../assets/emptyState.svg'
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 class EntriesPage extends Component {
   componentDidMount() {
+    this.props.entriesTotalCount();
     this.props.fetchEntries();
   }
   render() {
@@ -48,7 +49,7 @@ class EntriesPage extends Component {
                 </Grid>
               </Grid>
             </Grid>} 
-            <Pagination count={10} color='primary' style={{display : 'flex', justifyContent : 'center', padding : 40}} />
+            <Pagination count={Math.ceil(this.props.totalCount / 8)} color='primary' style={{display : 'flex', justifyContent : 'center', padding : 40}} />
         </div>
       </div>
     );
@@ -56,7 +57,8 @@ class EntriesPage extends Component {
 }
 const mapStateToProps = state => ({
   entries: state.entries.entriesList,
-  fetchingEntries: state.entries.fetchingEntries
+  fetchingEntries: state.entries.fetchingEntries,
+  totalCount : state.entries.totalCount
 })
 
-export default connect(mapStateToProps, { fetchEntries })(EntriesPage)
+export default connect(mapStateToProps, { fetchEntries, entriesTotalCount })(EntriesPage)

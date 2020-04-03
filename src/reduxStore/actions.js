@@ -1,4 +1,4 @@
-import { getEntries, createEntry } from '../services/apiEndpoints'
+import { getEntries, createEntry, getEntriesCount } from '../services/apiEndpoints'
 
 export const fetchEntries = () => dispatch => {
   dispatch({ type: 'SET_FETCHING_ENTRIES', payload: true });
@@ -11,5 +11,11 @@ export const fetchEntries = () => dispatch => {
 export const addEntry = (entry) => dispatch => {
   return createEntry(entry).then(function (obj) {
     dispatch({ type: 'ADD_ENTRY', payload: obj })
+  })
+}
+
+export const entriesTotalCount = () => dispatch => {
+  getEntriesCount().then(res => {
+    dispatch({type: 'SET_TOTAL_COUNT', payload : res})
   })
 }

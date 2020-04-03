@@ -23,13 +23,15 @@ class AddEntry extends Component {
 
   generateEntry() {
     let date = new Date();
+    let day = date.getDate()
     return {
       body: this.state.journalContent,
       title: this.state.journalTitle,
       date: {
-        day: date.getDate(),
+        day: day < 10 ? '0' + day : day,
         month: date.toLocaleString('default', { month: 'short' }),
         year: date.getFullYear(),
+        time: date.getTime(),
       }
     }
   }
@@ -38,6 +40,7 @@ class AddEntry extends Component {
     this.setState({ isDialogOpen: false });
   };
   render() {
+    console.log();
     return (
       <div>
         <Button
@@ -97,7 +100,7 @@ class AddEntry extends Component {
                   variant='contained'
                   style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}
                 >
-                  {this.state.isLoading ? <CircularProgress size={20} style={{color : 'white', padding : '5px 25px'}} /> : 'Submit'}
+                  {this.state.isLoading ? <CircularProgress size={20} style={{ color: 'white', padding: '5px 25px' }} /> : 'Submit'}
                 </Button>
               </Grid>
               <Grid item xs={6} style={{ paddingTop: 120, paddingLeft: 20 }}>

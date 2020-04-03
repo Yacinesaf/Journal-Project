@@ -11,7 +11,7 @@ function getRandomImage() {
 
 function getEntries() {
   let db = firebase.firestore(firebaseApp);
-  return db.collection('entries').orderBy('date').limit(8)
+  return db.collection('entries').orderBy('date', 'desc').limit(8)
     .get()
     .then(function (querySnapshot) {
       return querySnapshot.docs.map(doc => {
@@ -20,6 +20,14 @@ function getEntries() {
         obj['id'] = doc.id
         return obj
       })
+    })
+}
+function getEntriesCount() {
+  let db = firebase.firestore(firebaseApp);
+  return db.collection('entries')
+    .get()
+    .then(function (querySnapshot) {
+      return querySnapshot.docs.length
     })
 }
 
@@ -39,8 +47,9 @@ function createEntry(obj) {
   let db = firebase.firestore(firebaseApp);
   return getRandomImage().then(res => {
     obj['img'] = res;
-    let backendFormat = { ...obj, date: firebase.firestore.Timestamp.fromDate(new Date(`${obj.date.month} ${obj.date.day}, ${obj.date.year}`)) }
+    let backendFormat = { ...obj, date: firebase.firestore.Timestamp.fromDate(new Date()) }
     return db.collection("entries").add(backendFormat).then(function (doc) {
+      console.log(obj);
       return { ...obj, id: doc.id }
     })
   })
@@ -50,5 +59,6 @@ export {
   getEntry,
   getRandomImage,
   getEntries,
-  createEntry
+  createEntry,
+  getEntriesCount
 }
