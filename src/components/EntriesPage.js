@@ -18,16 +18,16 @@ class EntriesPage extends Component {
       <div>
         <div style={{ textAlign: 'center' }}>
           <div style={{ widht: '100%', textAlign: 'center' }}>
-            <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 100, fontWeight: 400 }}>Welcome Islam!</Typography>
+            <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 60, fontWeight: 400 }}>Welcome Islam!</Typography>
             {!this.props.entries.length && !this.props.fetchingEntries ? <img alt='empty' src={emptyState} style={{ height: 700, width: 700 }} /> : null}
           </div>
           {this.props.fetchingEntries ?
             <Grid container justify='center' style={{ paddingTop: 60 }}>
               <Grid item xs={8} style={{ display: 'flex' }}>
                 <Grid container>
-                  {[0, 1, 2, 3].map((x) => (
+                  {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
                     <Grid key={x} item xs={3} style={{ padding: 15 }}>
-                      <Skeleton variant='rect' animation='wave' style={{ height: 400, width: '100%', borderRadius: 15, }} />
+                      <Skeleton variant='rect' animation='wave' style={{ height: 280, width: '100%', borderRadius: 15, }} />
                     </Grid>
                   ))}
                 </Grid>
