@@ -30,7 +30,6 @@ function getEntries() {
 }
 
 function switchEntries(docs, direction) {
-  console.log(docs)
   let db = firebase.firestore(firebaseApp);
   var lastVisible = direction !== 'next' ? docs.start : docs.end;
   if (direction === 'next') {
