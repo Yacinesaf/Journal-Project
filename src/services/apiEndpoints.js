@@ -8,20 +8,77 @@ function getRandomImage() {
   return axios.get("https://api.unsplash.com/photos/random?client_id=uxmW_PR6Zn3N6vc5Zsc2pQJVOwzezAXoPBSOi1eXa4A")
     .then(res => res.data.urls.regular)
 }
-
 function getEntries() {
   let db = firebase.firestore(firebaseApp);
   return db.collection('entries').orderBy('date', 'desc').limit(8)
     .get()
     .then(function (querySnapshot) {
-      return querySnapshot.docs.map(doc => {
+      let entries = querySnapshot.docs.map(doc => {
         let obj = doc.data();
         obj.date = formatDate(obj.date);
         obj['id'] = doc.id
         return obj
       })
+      return {
+        entries,
+        docs: {
+          start: querySnapshot.docs[0],
+          end: querySnapshot.docs[querySnapshot.docs.length - 1]
+        }
+      }
     })
 }
+
+function switchEntries(docs, direction) {
+  console.log(docs)
+  let db = firebase.firestore(firebaseApp);
+  var lastVisible = direction !== 'next' ? docs.start : docs.end;
+  if (direction === 'next') {
+    return db.collection("entries")
+      .orderBy("date", 'desc')
+      .startAfter(lastVisible)
+      .limit(8)
+      .get()
+      .then(function (querySnapshot) {
+        let entries = querySnapshot.docs.map(doc => {
+          let obj = doc.data();
+          obj.date = formatDate(obj.date);
+          obj['id'] = doc.id
+          return obj
+        })
+        return {
+          entries,
+          docs: {
+            start: querySnapshot.docs[0],
+            end: querySnapshot.docs[querySnapshot.docs.length - 1]
+          }
+        }
+      })
+
+  } else {
+    return db.collection('entries')
+      .orderBy("date", 'desc')
+      .endBefore(lastVisible)
+      .limit(8)
+      .get()
+      .then(function (querySnapshot) {
+        let entries = querySnapshot.docs.map(doc => {
+          let obj = doc.data();
+          obj.date = formatDate(obj.date);
+          obj['id'] = doc.id
+          return obj
+        })
+        return {
+          entries,
+          docs: {
+            start: querySnapshot.docs[0],
+            end: querySnapshot.docs[querySnapshot.docs.length - 1]
+          }
+        }
+      })
+  }
+}
+
 function getEntriesCount() {
   let db = firebase.firestore(firebaseApp);
   return db.collection('entries')
@@ -60,5 +117,6 @@ export {
   getRandomImage,
   getEntries,
   createEntry,
-  getEntriesCount
+  getEntriesCount,
+  switchEntries
 }

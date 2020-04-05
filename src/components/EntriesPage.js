@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import '../style.css'
-import { fetchEntries, entriesTotalCount } from '../reduxStore/actions'
+import { fetchEntries, entriesTotalCount, changingEntries } from '../reduxStore/actions'
 import { connect } from 'react-redux'
 import EntryCard from './EntryCard';
 import emptyState from '../assets/emptyState.svg'
@@ -11,10 +11,20 @@ import { Link } from "react-router-dom";
 
 
 class EntriesPage extends Component {
+  constructor() {
+    super()
+    this.state = {
+      currentPage: 1
+    }
+  }
   componentDidMount() {
     this.props.entriesTotalCount();
     this.props.fetchEntries();
   }
+  switchPage = (page) => {
+    return this.state.currentPage > page ? 'back' : 'next'
+  }
+
   render() {
     return (
       <div>
@@ -48,8 +58,15 @@ class EntriesPage extends Component {
                   ))}
                 </Grid>
               </Grid>
-            </Grid>} 
-            <Pagination count={Math.ceil(this.props.totalCount / 8)} color='primary' style={{display : 'flex', justifyContent : 'center', padding : 40}} />
+            </Grid>}
+          <Pagination page={this.state.currentPage}
+            onChange={(e, p) => {
+              this.setState({ currentPage: p })
+              this.props.changingEntries(this.props.boundryDocs, this.switchPage(p))
+            }}
+            count={Math.ceil(this.props.totalCount / 8)}
+            color='primary'
+            style={{ display: 'flex', justifyContent: 'center', padding: 40 }} />
         </div>
       </div>
     );
@@ -58,7 +75,8 @@ class EntriesPage extends Component {
 const mapStateToProps = state => ({
   entries: state.entries.entriesList,
   fetchingEntries: state.entries.fetchingEntries,
-  totalCount : state.entries.totalCount
+  totalCount: state.entries.totalCount,
+  boundryDocs : state.entries.boundryDocs
 })
 
-export default connect(mapStateToProps, { fetchEntries, entriesTotalCount })(EntriesPage)
+export default connect(mapStateToProps, { fetchEntries, entriesTotalCount, changingEntries })(EntriesPage)
