@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, IconButton, Button } from '@material-ui/core';
 import '../style.css'
 import { fetchEntries, entriesTotalCount, changingEntries } from '../reduxStore/actions'
 import { connect } from 'react-redux'
 import EntryCard from './EntryCard';
 import emptyState from '../assets/emptyState.svg'
 import Skeleton from '@material-ui/lab/Skeleton';
-import Pagination from '@material-ui/lab/Pagination';
 import { Link } from "react-router-dom";
-
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import {user} from '../services/apiEndpoints'
 
 class EntriesPage extends Component {
   constructor() {
     super()
     this.state = {
-      currentPage: 1
+      currentPage: 1,
+      totalPages: null,
     }
   }
   componentDidMount() {
     this.props.entriesTotalCount();
     this.props.fetchEntries();
-  }
-  switchPage = (page) => {
-    return this.state.currentPage > page ? 'back' : 'next'
   }
 
   render() {
@@ -59,14 +58,22 @@ class EntriesPage extends Component {
                 </Grid>
               </Grid>
             </Grid>}
-          <Pagination page={this.state.currentPage}
-            onChange={(e, p) => {
-              this.setState({ currentPage: p })
-              this.props.changingEntries(this.props.boundryDocs, this.switchPage(p))
-            }}
-            count={Math.ceil(this.props.totalCount / 8)}
-            color='primary'
-            style={{ display: 'flex', justifyContent: 'center', padding: 40 }} />
+          <div>
+            <IconButton
+              disabled={this.state.currentPage === 1}
+              style={{ margin: 15, textAlign: 'center' }}
+              onClick={() => { this.props.changingEntries(this.props.boundryDocs, 'back'); this.setState({currentPage : this.state.currentPage-1}) }}>
+              <ArrowForwardIosIcon fontSize='large' style={{transform : 'rotate(180deg)'}}/>
+            </IconButton>
+            <IconButton
+              disabled={this.state.currentPage === Math.ceil(this.props.totalCount / 8)}
+              style={{ margin: 15, textAlign: 'center' }}
+              onClick={() => { this.props.changingEntries(this.props.boundryDocs, 'next'); this.setState({currentPage : this.state.currentPage+1}) }}>
+              <ArrowForwardIosIcon fontSize='large' />
+            </IconButton>
+            <Button onClick={()=> user('ddd@gmail.com', '44dsdd44d')}>press</Button>
+
+          </div>
         </div>
       </div>
     );
@@ -76,7 +83,7 @@ const mapStateToProps = state => ({
   entries: state.entries.entriesList,
   fetchingEntries: state.entries.fetchingEntries,
   totalCount: state.entries.totalCount,
-  boundryDocs : state.entries.boundryDocs
+  boundryDocs: state.entries.boundryDocs
 })
 
 export default connect(mapStateToProps, { fetchEntries, entriesTotalCount, changingEntries })(EntriesPage)

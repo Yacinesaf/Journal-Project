@@ -55,9 +55,10 @@ function switchEntries(docs, direction) {
       })
 
   } else {
+    console.log(lastVisible)
     return db.collection('entries')
-      .orderBy("date", 'desc')
-      .endBefore(lastVisible)
+      .orderBy("date", 'asc')
+      .startAfter(lastVisible)
       .limit(8)
       .get()
       .then(function (querySnapshot) {
@@ -68,10 +69,10 @@ function switchEntries(docs, direction) {
           return obj
         })
         return {
-          entries,
+          entries: entries.reverse(),
           docs: {
-            start: querySnapshot.docs[0],
-            end: querySnapshot.docs[querySnapshot.docs.length - 1]
+            end: querySnapshot.docs[0],
+            start: querySnapshot.docs[querySnapshot.docs.length - 1]
           }
         }
       })
@@ -111,11 +112,18 @@ function createEntry(obj) {
   })
 }
 
+function user(email, password) {
+  firebase.auth().signInWithEmailAndPassword(email, password).then(res => {
+    console.log(res);
+  })
+}
+
 export {
   getEntry,
   getRandomImage,
   getEntries,
   createEntry,
   getEntriesCount,
-  switchEntries
+  switchEntries,
+  user
 }
