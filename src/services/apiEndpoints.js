@@ -112,18 +112,11 @@ function createEntry(obj) {
   })
 }
 
-function user(email, password) {
-  firebase.auth().signInWithEmailAndPassword(email, password).then(res => {
-    console.log(res);
-  })
-}
-
 export {
   getEntry,
   getRandomImage,
   getEntries,
   createEntry,
   getEntriesCount,
-  switchEntries,
-  user
+  switchEntries
 }

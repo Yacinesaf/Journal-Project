@@ -16,7 +16,9 @@ function NavPcVersion() {
         </Link>
         <Button className='buttonStyle' >Contact</Button>
         <Button className='buttonStyle' style={{ margin: '0px 20px' }}>About</Button>
-        <Button className='buttonStyle' style={{ marginRight: 20 }}>Sing in</Button>
+        <Link to='/signin' style={{ textDecoration: 'none' }}>
+          <Button className='buttonStyle' style={{ marginRight: 20 }}>Sing in</Button>
+        </Link>
         {isLoggedIn ? null :
           <Link to='/signup' style={{ textDecoration: 'none' }}>
             <Button className='buttonStyle' variant='outlined' color='inherit' style={{ borderRadius: 4 }}>Get Started</Button>

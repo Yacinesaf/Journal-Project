@@ -29,9 +29,3 @@ export const changingEntries = (docs, direction) => dispatch => {
     dispatch({ type: 'SET_FETCHING_ENTRIES', payload: false });
   })
 }
-
-export const createUser = () => dispatch => {
-  user().then(res => {
-    dispatch({type : 'SET_EMAIL', payload : res})
-  })
-}

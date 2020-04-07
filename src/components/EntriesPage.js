@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Typography, Grid, IconButton, Button } from '@material-ui/core';
+import { Typography, Grid, IconButton } from '@material-ui/core';
 import '../style.css'
 import { fetchEntries, entriesTotalCount, changingEntries } from '../reduxStore/actions'
 import { connect } from 'react-redux'
@@ -8,8 +8,7 @@ import emptyState from '../assets/emptyState.svg'
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import {user} from '../services/apiEndpoints'
+
 
 class EntriesPage extends Component {
   constructor() {
@@ -26,7 +25,7 @@ class EntriesPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='appBackground' style={{ minHeight: '100vh', paddingTop: 64 }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ widht: '100%', textAlign: 'center' }}>
             <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 40, fontWeight: 400 }}>Welcome Islam!</Typography>
@@ -62,17 +61,15 @@ class EntriesPage extends Component {
             <IconButton
               disabled={this.state.currentPage === 1}
               style={{ margin: 15, textAlign: 'center' }}
-              onClick={() => { this.props.changingEntries(this.props.boundryDocs, 'back'); this.setState({currentPage : this.state.currentPage-1}) }}>
-              <ArrowForwardIosIcon fontSize='large' style={{transform : 'rotate(180deg)'}}/>
+              onClick={() => { this.props.changingEntries(this.props.boundryDocs, 'back'); this.setState({ currentPage: this.state.currentPage - 1 }) }}>
+              <ArrowForwardIosIcon fontSize='large' style={{ transform: 'rotate(180deg)' }} />
             </IconButton>
             <IconButton
               disabled={this.state.currentPage === Math.ceil(this.props.totalCount / 8)}
               style={{ margin: 15, textAlign: 'center' }}
-              onClick={() => { this.props.changingEntries(this.props.boundryDocs, 'next'); this.setState({currentPage : this.state.currentPage+1}) }}>
+              onClick={() => { this.props.changingEntries(this.props.boundryDocs, 'next'); this.setState({ currentPage: this.state.currentPage + 1 }) }}>
               <ArrowForwardIosIcon fontSize='large' />
             </IconButton>
-            <Button onClick={()=> user('ddd@gmail.com', '44dsdd44d')}>press</Button>
-
           </div>
         </div>
       </div>
