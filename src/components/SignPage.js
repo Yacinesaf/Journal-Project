@@ -9,11 +9,12 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import '../style.css'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 
-function SignPage() {
+function SignPage({ setUser }) {
 
+  let history = useHistory();
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
   const [checkBoxChecked, setCheckBoxChecked] = useState(false);
@@ -58,13 +59,6 @@ function SignPage() {
               {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
             </Typography>
             <form style={{ width: '100%' }}>
-              {location.pathname === '/signin' ?
-                <TextField
-                  id="username"
-                  style={{ marginTop: 24 }}
-                  fullWidth={true} label="Username"
-                  variant="outlined" />
-                : null}
               <TextField
                 error={!isEmailValid(email)}
                 helperText={isEmailValid(email) ? '' : emailErrorMsg}
@@ -89,30 +83,34 @@ function SignPage() {
                 style={{ marginBottom: 24 }}
                 fullWidth={true} label="Password"
                 variant="outlined" />
-              <FormControlLabel
-                onClick={(e) => { e.preventDefault(); setCheckBoxChecked(!checkBoxChecked) }}
-                style={{ marginBottom: 24 }}
-                control={<Checkbox style={{ color: checkBoxChecked ? '#212121' : '' }} checked={checkBoxChecked} />}
-                label="Accept the terms & conditions" />
+              {location.pathname === '/signup' ?
+                <FormControlLabel
+                  onClick={(e) => { e.preventDefault(); setCheckBoxChecked(!checkBoxChecked) }}
+                  style={{ marginBottom: 24 }}
+                  control={<Checkbox style={{ color: checkBoxChecked ? '#212121' : '' }} checked={checkBoxChecked} />}
+                  label="Accept the terms & conditions" />
+                : null}
+
             </form>
-            <Link to='/entries' style={{ textDecoration: 'none', width: '100%' }}>
-              <Button
-                onClick={() => {
-                  setShowSnackBar(true);
-                  if(location.pathname === '/signup') {
-                    firebase.auth().createUserWithEmailAndPassword(email, password)
-                  } else {
-                    firebase.auth().signInWithEmailAndPassword(email, password).then(res => {console.log(res)})
-                  }
-                }}
-                disabled={!isFormValid(email, password)}
-                fullWidth={true}
-                variant="contained"
-                style={{ backgroundColor: isFormValid(email, password) ? '#212121' : '', color: isFormValid(email, password) ? 'white' : '' }}
-                size='large'>
-                Sign Up
-              </Button>
-            </Link>
+            <Button
+              onClick={() => {
+                if (location.pathname === '/signup') {
+                  setUser(email, password).then(res => {
+                    setShowSnackBar(true);
+                    setTimeout(()=> {history.push("/entries")},1000)
+                    
+                  })
+                } else {
+                  firebase.auth().signInWithEmailAndPassword(email, password).then(res => { console.log(res) })
+                }
+              }}
+              disabled={!isFormValid(email, password)}
+              fullWidth={true}
+              variant="contained"
+              style={{ backgroundColor: isFormValid(email, password) ? '#212121' : '', color: isFormValid(email, password) ? 'white' : '' }}
+              size='large'>
+              {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
+            </Button>
             {location.pathname === '/signup' ?
               <Link to='/signin' style={{ width: '100%', color: 'black', paddingTop: 15, textAlign: 'right' }}>
                 <Typography variant='caption'>Already have an account ?</Typography>
@@ -132,4 +130,5 @@ function SignPage() {
     </div>
   )
 }
+
 export default SignPage

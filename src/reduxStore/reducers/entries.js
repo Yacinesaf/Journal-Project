@@ -6,6 +6,7 @@ const initialState = {
     start : null,
     end : null,
   },
+  
 }
 
 export default function(state= initialState, action) {
