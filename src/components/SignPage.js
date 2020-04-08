@@ -102,7 +102,7 @@ function SignPage() {
                   if(location.pathname === '/signup') {
                     firebase.auth().createUserWithEmailAndPassword(email, password)
                   } else {
-                    firebase.auth().signInWithEmailAndPassword(email, password)
+                    firebase.auth().signInWithEmailAndPassword(email, password).then(res => {console.log(res)})
                   }
                 }}
                 disabled={!isFormValid(email, password)}
