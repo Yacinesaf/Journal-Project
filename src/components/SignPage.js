@@ -6,8 +6,6 @@ import { Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Grid
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
 import '../style.css'
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
@@ -18,7 +16,7 @@ function SignPage({ setUser }) {
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
   const [checkBoxChecked, setCheckBoxChecked] = useState(false);
-  const [showSnackBar, setShowSnackBar] = useState(false);
+  // const [showSnackBar, setShowSnackBar] = useState(false);
   const [password, setPassword] = useState('444444444')
   const [email, setEmail] = useState('44444@FF.COM')
   const passwordErrorMsg = 'Password needs to be at least 6 characters';
@@ -96,9 +94,7 @@ function SignPage({ setUser }) {
               onClick={() => {
                 if (location.pathname === '/signup') {
                   setUser(email, password).then(res => {
-                    setShowSnackBar(true);
-                    setTimeout(()=> {history.push("/entries")},1000)
-                    
+                    setTimeout(() => { history.push("/entries") }, 1000)
                   })
                 } else {
                   firebase.auth().signInWithEmailAndPassword(email, password).then(res => { console.log(res) })
@@ -119,16 +115,18 @@ function SignPage({ setUser }) {
           </Card>
         </Grid>
       </Grid>
-      <Snackbar
-        onClose={() => { setShowSnackBar(false) }}
-        open={showSnackBar}
-        autoHideDuration={3000}>
-        <Alert elevation={6} variant="filled" severity={isFormValid(email, password) ? "success" : "error"}>
-          {isFormValid(email, password) ? 'You are Signed In !' : 'Incorrect inputs'}
-        </Alert>
-      </Snackbar>
+
     </div>
   )
 }
 
 export default SignPage
+
+// <Snackbar
+// onClose={() => { setShowSnackBar(false) }}
+// open={showSnackBar}
+// autoHideDuration={3000}>
+// <Alert elevation={6} variant="filled" severity={isFormValid(email, password) ? "success" : "error"}>
+//   {isFormValid(email, password) ? 'You are Signed In !' : 'Incorrect inputs'}
+// </Alert>
+// </Snackbar>

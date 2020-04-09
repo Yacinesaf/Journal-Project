@@ -35,3 +35,12 @@ export const setUser = (email, password) => dispatch => {
     dispatch({ type: 'SET_USER', payload: res })
   })
 }
+
+export const showSnackbar =(message) => dispatch => {
+  dispatch({type : 'SHOW_SNACKBAR', payload : true});
+  dispatch({type : 'SET_MESSAGE', payload : message})
+}
+
+export const hideSnackbar = () => dispatch => {
+  dispatch({type : 'SHOW_SNACKBAR', payload : false})
+}
