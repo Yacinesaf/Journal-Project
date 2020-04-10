@@ -1,4 +1,4 @@
-import { getEntries, createEntry, getEntriesCount, switchEntries, createUser } from '../services/apiEndpoints'
+import { getEntries, createEntry, getEntriesCount, switchEntries, createUser, login } from '../services/apiEndpoints'
 
 export const fetchEntries = () => dispatch => {
   dispatch({ type: 'SET_FETCHING_ENTRIES', payload: true });
@@ -33,6 +33,12 @@ export const changingEntries = (docs, direction) => dispatch => {
 export const setUser = (email, password) => dispatch => {
   return createUser(email, password).then(res => {
     dispatch({ type: 'SET_USER', payload: res })
+  })
+}
+
+export const loginAction = (email, password) => dispatch => {
+  return login(email, password).then(res => {
+    dispatch({ type: 'LOGIN', payload: res })
   })
 }
 

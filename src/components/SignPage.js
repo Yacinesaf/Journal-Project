@@ -9,7 +9,7 @@ import '../style.css'
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 
-function SignPage({ setUser, loggedUser, showSnackbar }) {
+function SignPage({ setUser, loginAction, showSnackbar }) {
 
   let history = useHistory();
   let location = useLocation();
@@ -82,7 +82,6 @@ function SignPage({ setUser, loggedUser, showSnackbar }) {
                   control={<Checkbox style={{ color: checkBoxChecked ? '#212121' : '' }} checked={checkBoxChecked} />}
                   label="Accept the terms & conditions" />
                 : null}
-
             </form>
             <Button
               onClick={() => {
@@ -96,7 +95,7 @@ function SignPage({ setUser, loggedUser, showSnackbar }) {
                       showSnackbar(error.message, 'error')
                     })
                 } else {
-                  loggedUser(email, password)
+                  loginAction(email, password)
                     .then(res => {
                       showSnackbar('Successfully signed in', 'success')
                       history.push("/entries")

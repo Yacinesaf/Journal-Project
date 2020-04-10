@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { setUser, hideSnackbar, showSnackbar } from '../reduxStore/actions'
+import { setUser, hideSnackbar, showSnackbar, loginAction } from '../reduxStore/actions'
 import { connect } from 'react-redux'
 import SignPage from './SignPage'
-import { loggedUser } from '../services/apiEndpoints'
 
 
 class SignPageWrapper extends Component {
@@ -13,7 +12,7 @@ class SignPageWrapper extends Component {
           setUser={this.props.setUser}
           hideSnackbar={this.props.hideSnackbar}
           showSnackbar={this.props.showSnackbar}
-          loggedUser={loggedUser}
+          loginAction={this.props.loginAction}
         />
       </div>
     )
@@ -21,7 +20,6 @@ class SignPageWrapper extends Component {
 }
 
 const mapStateToProps = state => ({
-  id: state.user.id
 })
 
-export default connect(mapStateToProps, { setUser, hideSnackbar, showSnackbar })(SignPageWrapper)
+export default connect(mapStateToProps, { setUser, hideSnackbar, showSnackbar, loginAction })(SignPageWrapper)

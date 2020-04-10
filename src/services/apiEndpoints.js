@@ -123,7 +123,7 @@ function createUser(email, password) {
     })
 }
 
-function loggedUser(email, password) {
+function login(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password)
     .then(res => {
       return {
@@ -141,5 +141,5 @@ export {
   getEntriesCount,
   switchEntries,
   createUser,
-  loggedUser
+  login
 }
