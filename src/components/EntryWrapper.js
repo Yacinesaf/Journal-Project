@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getEntry } from '../services/apiEndpoints'
 import reading from '../assets/readingImg.svg'
 import Entry from './Entry';
+import { Redirect } from 'react-router';
 
 class EntryWrapper extends Component {
   constructor() {
@@ -13,6 +14,8 @@ class EntryWrapper extends Component {
     }
   }
   componentDidMount() {
+    if (!this.props.userId) return
+    console.log('ss')
     let entryFromStore = this.props.entries.find(x => x.id === this.props.match.params.id);
     if (!entryFromStore) {
       getEntry(this.props.match.params.id).then(res => {
@@ -23,18 +26,25 @@ class EntryWrapper extends Component {
     }
   }
   render() {
-    return (
-      <div>
-        {this.state.entry ?
-          <Entry title={this.state.entry.title} body={this.state.entry.body} reading={reading} />
-          : null}
-      </div>
-    );
+    if (this.props.userId) {
+      return (
+        <div>
+          {this.state.entry ?
+            <Entry title={this.state.entry.title} body={this.state.entry.body} reading={reading} />
+            : null}
+        </div>
+      );
+    } else {
+      return <Redirect to='/signin' />
+
+    }
+
   }
 }
 
 const mapStateToProps = state => ({
   entries: state.entries.entriesList,
+  userId: state.user.id
 })
 
 export default connect(mapStateToProps)(EntryWrapper);

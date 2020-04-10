@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
-import snackbar from '../reduxStore/reducers/snackbar';
-import { showSnackbar, hideSnackbar } from '../reduxStore/actions'
+import { hideSnackbar } from '../reduxStore/actions'
 import { connect } from 'react-redux'
 
 class SnackbarComp extends Component {
@@ -10,11 +9,11 @@ class SnackbarComp extends Component {
     return (
       <div>
         <Snackbar
-          onClose={() => { this.props.hideSnackbar() }}
-          open={this.props.showSnackBar}
+          onClose={this.props.hideSnackbar}
+          open={this.props.show}
           autoHideDuration={3000}>
-          <Alert elevation={6} variant="filled" severity={isFormValid(email, password) ? "success" : "error"}>
-            {isFormValid(email, password) ? 'You are Signed In !' : 'Incorrect inputs'}
+          <Alert elevation={6} variant="filled" severity={this.props.color}>
+            {this.props.message}
           </Alert>
         </Snackbar>
       </div>
@@ -23,9 +22,10 @@ class SnackbarComp extends Component {
 }
 
 const mapStateToProps = state => ({
-  showSnackbar : snackbar.show,
-  message : snackbar.message
+  show : state.snackbar.show,
+  message : state.snackbar.message,
+  color : state.snackbar.color
 })
 
 
-export default connect(mapStateToProps, { showSnackbar, hideSnackbar })(SnackbarComp)
+export default connect(mapStateToProps, { hideSnackbar })(SnackbarComp)

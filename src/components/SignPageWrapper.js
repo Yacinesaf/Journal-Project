@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
-import { setUser } from '../reduxStore/actions'
+import { setUser, hideSnackbar, showSnackbar } from '../reduxStore/actions'
 import { connect } from 'react-redux'
-import user from '../reduxStore/reducers/user'
 import SignPage from './SignPage'
+import { loggedUser } from '../services/apiEndpoints'
 
 
 class SignPageWrapper extends Component {
   render() {
     return (
       <div>
-        <SignPage setUser={this.props.setUser} />
+        <SignPage
+          setUser={this.props.setUser}
+          hideSnackbar={this.props.hideSnackbar}
+          showSnackbar={this.props.showSnackbar}
+          loggedUser={loggedUser}
+        />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  id: user.id
+  id: state.user.id
 })
 
-export default connect(mapStateToProps, { setUser })(SignPageWrapper)
+export default connect(mapStateToProps, { setUser, hideSnackbar, showSnackbar })(SignPageWrapper)

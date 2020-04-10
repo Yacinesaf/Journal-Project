@@ -36,11 +36,10 @@ export const setUser = (email, password) => dispatch => {
   })
 }
 
-export const showSnackbar =(message) => dispatch => {
-  dispatch({type : 'SHOW_SNACKBAR', payload : true});
-  dispatch({type : 'SET_MESSAGE', payload : message})
+export const showSnackbar =(message, color) => dispatch => {
+  dispatch({type : 'SHOW_SNACKBAR', payload : {show : true, message, color}});
 }
 
 export const hideSnackbar = () => dispatch => {
-  dispatch({type : 'SHOW_SNACKBAR', payload : false})
+  dispatch({type : 'HIDE_SNACKBAR'})
 }

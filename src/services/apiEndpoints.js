@@ -1,7 +1,8 @@
 import axios from 'axios'
 import firebaseApp from '../firebase'
-import firebase from 'firebase/app'
 import { formatDate } from './helperFunctions'
+import firebase from 'firebase/app'
+require('firebase/auth')
 
 
 function getRandomImage() {
@@ -120,8 +121,15 @@ function createUser(email, password) {
         email: res.user.email
       }
     })
-    .catch(err => {
-      console.log(err)
+}
+
+function loggedUser(email, password) {
+  return firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(res => {
+      return {
+        id: res.user.uid,
+        email: res.user.email
+      }
     })
 }
 
@@ -132,5 +140,6 @@ export {
   createEntry,
   getEntriesCount,
   switchEntries,
-  createUser
+  createUser,
+  loggedUser
 }

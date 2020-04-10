@@ -1,5 +1,6 @@
 const initialState = {
-  id: null
+  id: null,
+  email : ''
 
 }
 
@@ -8,6 +9,6 @@ export default function (state = initialState, action) {
     default: return state
 
     case 'SET_USER':
-      return {...state, id: action.payload}
+      return action.payload
   }
 }

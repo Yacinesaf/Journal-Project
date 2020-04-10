@@ -1,6 +1,7 @@
 const initialState = {
   show: false,
-  message : null
+  message: null,
+  color: null
 }
 
 export default function (state = initialState, action) {
@@ -8,8 +9,8 @@ export default function (state = initialState, action) {
     default: return state
 
     case 'SHOW_SNACKBAR':
-      return {...state, show: action.payload}
-    case 'SET_MESSAGE':
-      return {...state, message: action.payload}
+      return action.payload
+    case 'HIDE_SNACKBAR':
+      return {...state, show : false}
   }
 }

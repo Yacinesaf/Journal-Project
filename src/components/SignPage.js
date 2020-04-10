@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Card from '@material-ui/core/Card';
-import firebase from 'firebase'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Grid } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -10,13 +9,12 @@ import '../style.css'
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 
-function SignPage({ setUser }) {
+function SignPage({ setUser, loggedUser, showSnackbar }) {
 
   let history = useHistory();
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
   const [checkBoxChecked, setCheckBoxChecked] = useState(false);
-  // const [showSnackBar, setShowSnackBar] = useState(false);
   const [password, setPassword] = useState('444444444')
   const [email, setEmail] = useState('44444@FF.COM')
   const passwordErrorMsg = 'Password needs to be at least 6 characters';
@@ -38,10 +36,6 @@ function SignPage({ setUser }) {
 
   const changePassword = (event) => {
     setPassword(event.target.value)
-  }
-
-  const isFormValid = (email, password) => {
-    return isEmailValid(email) && checkBoxChecked && isPasswordValid(password)
   }
 
 
@@ -93,17 +87,28 @@ function SignPage({ setUser }) {
             <Button
               onClick={() => {
                 if (location.pathname === '/signup') {
-                  setUser(email, password).then(res => {
-                    setTimeout(() => { history.push("/entries") }, 1000)
-                  })
+                  setUser(email, password)
+                    .then(res => {
+                      showSnackbar('Successfully signed up', 'success')
+                      history.push("/entries")
+                    })
+                    .catch(error => {
+                      showSnackbar(error.message, 'error')
+                    })
                 } else {
-                  firebase.auth().signInWithEmailAndPassword(email, password).then(res => { console.log(res) })
+                  loggedUser(email, password)
+                    .then(res => {
+                      showSnackbar('Successfully signed in', 'success')
+                      history.push("/entries")
+                    })
+                    .catch(error => {
+                      showSnackbar(error.message, 'error')
+                    })
                 }
               }}
-              disabled={!isFormValid(email, password)}
               fullWidth={true}
               variant="contained"
-              style={{ backgroundColor: isFormValid(email, password) ? '#212121' : '', color: isFormValid(email, password) ? 'white' : '' }}
+              style={{ backgroundColor: '#212121', color: 'white' }}
               size='large'>
               {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
             </Button>
@@ -121,12 +126,3 @@ function SignPage({ setUser }) {
 }
 
 export default SignPage
-
-// <Snackbar
-// onClose={() => { setShowSnackBar(false) }}
-// open={showSnackBar}
-// autoHideDuration={3000}>
-// <Alert elevation={6} variant="filled" severity={isFormValid(email, password) ? "success" : "error"}>
-//   {isFormValid(email, password) ? 'You are Signed In !' : 'Incorrect inputs'}
-// </Alert>
-// </Snackbar>
