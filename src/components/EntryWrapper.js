@@ -15,7 +15,6 @@ class EntryWrapper extends Component {
   }
   componentDidMount() {
     if (!this.props.userId) return
-    console.log('ss')
     let entryFromStore = this.props.entries.find(x => x.id === this.props.match.params.id);
     if (!entryFromStore) {
       getEntry(this.props.match.params.id).then(res => {
@@ -35,7 +34,7 @@ class EntryWrapper extends Component {
         </div>
       );
     } else {
-      return <Redirect to='/signin' />
+      return <Redirect to='/login' />
 
     }
 

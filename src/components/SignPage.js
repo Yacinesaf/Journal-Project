@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import Card from '@material-ui/core/Card';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Grid } from '@material-ui/core';
+import { Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Grid, Card } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import '../style.css'
+import signState from '../assets/loginAsset.svg'
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
+import '../style.css'
+import shadows from '@material-ui/core/styles/shadows';
 
 function SignPage({ setUser, loginAction, showSnackbar }) {
 
@@ -72,9 +73,12 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
                 }}
                 type={showingPassword ? 'text' : 'password'}
                 id="password"
-                style={{ marginBottom: 24 }}
+                style={{ marginBottom: 4 }}
                 fullWidth={true} label="Password"
                 variant="outlined" />
+              {location.pathname === '/login' ?
+                <Typography variant='caption'>Forgot your password?</Typography>
+                : null}
               {location.pathname === '/signup' ?
                 <FormControlLabel
                   onClick={(e) => { e.preventDefault(); setCheckBoxChecked(!checkBoxChecked) }}
@@ -107,16 +111,32 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
               }}
               fullWidth={true}
               variant="contained"
-              style={{ backgroundColor: '#212121', color: 'white' }}
+              style={{ backgroundColor: '#212121', color: 'white', marginTop: 24 }}
               size='large'>
               {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
             </Button>
             {location.pathname === '/signup' ?
-              <Link to='/signin' style={{ width: '100%', color: 'black', paddingTop: 15, textAlign: 'right' }}>
-                <Typography variant='caption'>Already have an account ?</Typography>
+              <Link to='/login' style={{ width: '100%', color: 'black', paddingTop: 15, textAlign: 'right' }}>
+                <Typography variant='caption'>Already have an account? Log In</Typography>
               </Link>
-              : null}
+              :
+              <Link to='/signup' style={{ width: '100%', color: 'black', paddingTop: 15, textAlign: 'right' }}>
+                <Typography variant='caption'>Don't have an account? Sign up</Typography>
+              </Link>
+            }
           </Card>
+        </Grid>
+        <Grid item xs={4}>
+          <div
+            style={{
+              paddingLeft: 60,
+              backgroundImage: `url(${signState})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'contain',
+              width: '100%',
+              height: 400,
+              backgroundRepeat: 'no-repeat',
+            }} />
         </Grid>
       </Grid>
 

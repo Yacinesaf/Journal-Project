@@ -32,7 +32,7 @@ class EntriesPageWrapper extends Component {
         />
       );
     } else {
-      return <Redirect to='/signin' />
+      return <Redirect to='/login' />
     }
   }
 }
@@ -41,7 +41,8 @@ const mapStateToProps = state => ({
   fetchingEntries: state.entries.fetchingEntries,
   totalCount: state.entries.totalCount,
   boundryDocs: state.entries.boundryDocs,
-  email: state.user.email
+  email: state.user.email,
+  userId: state.user.id
 })
 
 export default connect(mapStateToProps, { fetchEntries, entriesTotalCount, changingEntries })(EntriesPageWrapper)

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Toolbar, AppBar, Button, IconButton, Typography, Avatar } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import '../style.css'
 
 
-function NavPcVersion() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+function NavPcVersion({userId}) {
   return (
     <AppBar style={{ backgroundColor: '#212121' }}>
       <Toolbar>
@@ -15,15 +13,19 @@ function NavPcVersion() {
           <Typography variant='body1' style={{ paddingTop: 1, paddingLeft: 10 }}>Slice Of Life</Typography>
         </Link>
         <Button className='buttonStyle' >Contact</Button>
-        <Button className='buttonStyle' style={{ margin: '0px 20px' }}>About</Button>
-        <Link to='/signin' style={{ textDecoration: 'none' }}>
-          <Button className='buttonStyle' style={{ marginRight: 20 }}>Sing in</Button>
-        </Link>
-        {isLoggedIn ? null :
-          <Link to='/signup' style={{ textDecoration: 'none' }}>
-            <Button className='buttonStyle' variant='outlined' color='inherit' style={{ borderRadius: 4 }}>Get Started</Button>
-          </Link>}
-        {isLoggedIn ?
+        {userId ? null :
+          <div>
+            <Button className='buttonStyle' style={{ margin: '0px 20px' }}>About</Button>
+            <Link to='/login' style={{ textDecoration: 'none' }}>
+              <Button className='buttonStyle' style={{ marginRight: 20 }}>Sing in</Button>
+            </Link>
+
+            <Link to='/signup' style={{ textDecoration: 'none' }}>
+              <Button className='buttonStyle' variant='outlined' color='inherit' style={{ borderRadius: 4 }}>Get Started</Button>
+            </Link>
+          </div>
+        }
+        {userId ?
           <IconButton>
             <Avatar />
           </IconButton> : null}
