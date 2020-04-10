@@ -9,11 +9,15 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 function EntriesPage({ entries, fetchingEntries, email, currentPage, boundryDocs, totalCount, changingEntries }) {
 
+  const emailToUsername = (email) => {
+    return email.split('@')[0]
+  }
+
   return (
     <div className='appBackground' style={{ minHeight: '100vh', paddingTop: 64 }}>
       <div style={{ textAlign: 'center' }}>
         <div style={{ widht: '100%', textAlign: 'center' }}>
-          <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 40, fontWeight: 400 }}>{`Welcome ${email}`}</Typography>
+          <Typography variant='h2' style={{ color: '#212121', textAlign: 'center', paddingTop: 40, fontWeight: 400 }}>{`Welcome ${emailToUsername(email)}`}</Typography>
           {!entries.length && !fetchingEntries ? <img alt='empty' src={emptyState} style={{ height: 700, width: 700 }} /> : null}
         </div>
         {fetchingEntries ?
