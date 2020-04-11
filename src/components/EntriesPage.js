@@ -7,8 +7,9 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
-function EntriesPage({ entries, fetchingEntries, email, currentPage, boundryDocs, totalCount, changingEntries }) {
+function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount, changingEntries }) {
 
+  const [currentPage, setCurrentPage] = React.useState(1)
   const emailToUsername = (email) => {
     return email.split('@')[0]
   }
@@ -50,13 +51,13 @@ function EntriesPage({ entries, fetchingEntries, email, currentPage, boundryDocs
           <IconButton
             disabled={currentPage === 1}
             style={{ margin: 15, textAlign: 'center' }}
-            onClick={() => { changingEntries(boundryDocs, 'back'); this.setState({ currentPage: currentPage - 1 }) }}>
+            onClick={() => { changingEntries(boundryDocs, 'back'); setCurrentPage(currentPage - 1 ) }}>
             <ArrowForwardIosIcon fontSize='large' style={{ transform: 'rotate(180deg)' }} />
           </IconButton>
           <IconButton
             disabled={currentPage === Math.ceil(totalCount / 8)}
             style={{ margin: 15, textAlign: 'center' }}
-            onClick={() => { changingEntries(boundryDocs, 'next'); this.setState({ currentPage: currentPage + 1 }) }}>
+            onClick={() => { changingEntries(boundryDocs, 'next'); setCurrentPage(currentPage + 1 ) }}>
             <ArrowForwardIosIcon fontSize='large' />
           </IconButton>
         </div>

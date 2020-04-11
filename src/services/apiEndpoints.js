@@ -56,7 +56,6 @@ function switchEntries(docs, direction) {
       })
 
   } else {
-    console.log(lastVisible)
     return db.collection('entries')
       .orderBy("date", 'asc')
       .startAfter(lastVisible)

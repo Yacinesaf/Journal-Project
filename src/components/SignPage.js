@@ -8,7 +8,6 @@ import signState from '../assets/loginAsset.svg'
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import '../style.css'
-import shadows from '@material-ui/core/styles/shadows';
 
 function SignPage({ setUser, loginAction, showSnackbar }) {
 
@@ -16,8 +15,8 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
   const [checkBoxChecked, setCheckBoxChecked] = useState(false);
-  const [password, setPassword] = useState('444444444')
-  const [email, setEmail] = useState('44444@FF.COM')
+  const [password, setPassword] = useState(null)
+  const [email, setEmail] = useState(null)
   const passwordErrorMsg = 'Password needs to be at least 6 characters';
   const emailErrorMsg = 'Invalid Email';
 
@@ -25,11 +24,11 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
   const isEmailValid = (email) => {
     var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+    return !!email && re.test(email);
   }
 
   const isPasswordValid = (password) => {
-    return password.length >= 6
+    return !!password && password.length >= 6
   }
   const changeEmail = (event) => {
     setEmail(event.target.value)
@@ -39,6 +38,9 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
     setPassword(event.target.value)
   }
 
+  const isFormValid = (email, password) => {
+    return isPasswordValid(password) && isEmailValid(email)
+  }
 
   return (
     <div className='appBackground' style={{ height: "100vh" }}>
@@ -53,8 +55,8 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
             </Typography>
             <form style={{ width: '100%' }}>
               <TextField
-                error={!isEmailValid(email)}
-                helperText={isEmailValid(email) ? '' : emailErrorMsg}
+                error={email !== null && !isEmailValid(email)}
+                helperText={email !== null && !isEmailValid(email) ? emailErrorMsg : ''}
                 onChange={changeEmail}
                 id="email"
                 style={{ margin: '24px 0px' }}
@@ -62,8 +64,8 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
                 variant="outlined" />
               <TextField
                 onChange={changePassword}
-                error={!isPasswordValid(password)}
-                helperText={!isPasswordValid(password) ? passwordErrorMsg : ''}
+                error={password !== null && !isPasswordValid(password)}
+                helperText={password !== null && !isPasswordValid(password) ? passwordErrorMsg : ''}
                 InputProps={{
                   endAdornment: <InputAdornment onClick={() => setShowingPassword(!showingPassword)}>
                     {showingPassword
@@ -82,12 +84,12 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
               {location.pathname === '/signup' ?
                 <FormControlLabel
                   onClick={(e) => { e.preventDefault(); setCheckBoxChecked(!checkBoxChecked) }}
-                  style={{ marginBottom: 24 }}
                   control={<Checkbox style={{ color: checkBoxChecked ? '#212121' : '' }} checked={checkBoxChecked} />}
                   label="Accept the terms & conditions" />
                 : null}
             </form>
             <Button
+              disabled={!isFormValid(email, password)}
               onClick={() => {
                 if (location.pathname === '/signup') {
                   setUser(email, password)
@@ -111,18 +113,22 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
               }}
               fullWidth={true}
               variant="contained"
-              style={{ backgroundColor: '#212121', color: 'white', marginTop: 24 }}
+              style={{ backgroundColor: isFormValid(email, password) ? '#212121' : '', color: isFormValid(email, password) ? 'white' : '', marginTop: 24 }}
               size='large'>
               {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
             </Button>
             {location.pathname === '/signup' ?
-              <Link to='/login' style={{ width: '100%', color: 'black', paddingTop: 15, textAlign: 'right' }}>
-                <Typography variant='caption'>Already have an account? Log In</Typography>
-              </Link>
+              <div style={{ width: '100%', textAlign: 'right', paddingTop : 5 }}>
+                <Link to='/login' style={{color: 'black', paddingTop: 15 }}>
+                  <Typography variant='caption'>Already have an account? Log In</Typography>
+                </Link>
+              </div>
               :
-              <Link to='/signup' style={{ width: '100%', color: 'black', paddingTop: 15, textAlign: 'right' }}>
-                <Typography variant='caption'>Don't have an account? Sign up</Typography>
-              </Link>
+              <div style={{ width: '100%', textAlign: 'right', paddingTop : 5 }}>
+                <Link to='/signup' style={{color: 'black', paddingTop: 15 }}>
+                  <Typography variant='caption'>Don't have an account? Sign up</Typography>
+                </Link>
+              </div>
             }
           </Card>
         </Grid>

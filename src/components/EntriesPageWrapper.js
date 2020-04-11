@@ -9,7 +9,6 @@ class EntriesPageWrapper extends Component {
   constructor() {
     super()
     this.state = {
-      currentPage: 1,
       totalPages: null,
     }
   }
@@ -25,7 +24,6 @@ class EntriesPageWrapper extends Component {
           entries={this.props.entries}
           fetchingEntries={this.props.fetchingEntries}
           email={this.props.email}
-          currentPage={this.state.currentPage}
           boundryDocs={this.props.boundryDocs}
           totalCount={this.props.totalCount}
           changingEntries={this.props.changingEntries}
