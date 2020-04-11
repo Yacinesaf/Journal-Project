@@ -11,7 +11,11 @@ export const fetchEntries = () => dispatch => {
 
 export const addEntry = (entry) => dispatch => {
   return createEntry(entry).then(function (obj) {
-    dispatch({ type: 'ADD_ENTRY', payload: obj })
+    getEntries().then(res => {
+      dispatch({ type: 'SET_ENTRIES', payload: res.entries })
+      dispatch({ type: 'SET_BOUNDRYDOCS', payload: res.docs })
+      dispatch({ type: 'SET_FETCHING_ENTRIES', payload: false });
+    })
   })
 }
 
@@ -42,10 +46,10 @@ export const loginAction = (email, password) => dispatch => {
   })
 }
 
-export const showSnackbar =(message, color) => dispatch => {
-  dispatch({type : 'SHOW_SNACKBAR', payload : {show : true, message, color}});
+export const showSnackbar = (message, color) => dispatch => {
+  dispatch({ type: 'SHOW_SNACKBAR', payload: { show: true, message, color } });
 }
 
 export const hideSnackbar = () => dispatch => {
-  dispatch({type : 'HIDE_SNACKBAR'})
+  dispatch({ type: 'HIDE_SNACKBAR' })
 }

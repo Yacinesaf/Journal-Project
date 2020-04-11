@@ -4,10 +4,9 @@ import AddIcon from '@material-ui/icons/Add';
 import { withRouter } from 'react-router-dom';
 import '../style.css'
 import { connect } from 'react-redux'
-import { Grid, Typography, Button, Dialog, DialogContent, TextField, TextareaAutosize, IconButton, Snackbar, CircularProgress } from '@material-ui/core';
+import { Grid, Typography, Button, Dialog, DialogContent, TextField, TextareaAutosize, IconButton, CircularProgress } from '@material-ui/core';
 import bgImg from '../formBackground.png'
-import { addEntry } from '../reduxStore/actions.js'
-import Alert from '@material-ui/lab/Alert';
+import { addEntry, showSnackbar } from '../reduxStore/actions.js'
 
 
 class AddEntry extends Component {
@@ -17,7 +16,6 @@ class AddEntry extends Component {
       journalTitle: '',
       journalContent: '',
       isDialogOpen: false,
-      showSnackbar: false,
       isLoading: false
     }
   }
@@ -91,12 +89,14 @@ class AddEntry extends Component {
                   <Button
                     disabled={this.state.isLoading}
                     onClick={() => {
-                      this.setState({ isLoading: true })
                       this.props.addEntry(this.generateEntry()).then(() => {
+                        this.props.showSnackbar('Entry created', 'success')
                         this.setState({ isLoading: false })
                         this.closeDialog()
-                        this.setState({ showSnackbar: true })
-                      });
+                      })
+                      .catch(error => {
+                        this.props.showSnackbar(error.message, 'error')
+                      })
                     }}
                     variant='contained'
                     style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}
@@ -110,11 +110,6 @@ class AddEntry extends Component {
               </Grid>
             </DialogContent>
           </Dialog>
-          <Snackbar open={this.state.showSnackbar} autoHideDuration={2000} severity='success' onClose={() => this.setState({ showSnackbar: false })} >
-            <Alert variant='filled' severity='success'>
-              Entry Added !
-              </Alert>
-          </Snackbar>
         </div>
       );
     } else {
@@ -130,4 +125,4 @@ const mapStateToProps = state => ({
   userId: state.user.id
 })
 
-export default connect(mapStateToProps, { addEntry })(withRouter(AddEntry))
+export default connect(mapStateToProps, { addEntry, showSnackbar })(withRouter(AddEntry))

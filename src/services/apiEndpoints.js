@@ -106,7 +106,6 @@ function createEntry(obj) {
     obj['img'] = res;
     let backendFormat = { ...obj, date: firebase.firestore.Timestamp.fromDate(new Date()) }
     return db.collection("entries").add(backendFormat).then(function (doc) {
-      console.log(obj);
       return { ...obj, id: doc.id }
     })
   })
