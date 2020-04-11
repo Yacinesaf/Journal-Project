@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AddIcon from '@material-ui/icons/Add';
+import { withRouter } from 'react-router-dom';
 import '../style.css'
 import { connect } from 'react-redux'
 import { Grid, Typography, Button, Dialog, DialogContent, TextField, TextareaAutosize, IconButton, Snackbar, CircularProgress } from '@material-ui/core';
 import bgImg from '../formBackground.png'
 import { addEntry } from '../reduxStore/actions.js'
 import Alert from '@material-ui/lab/Alert';
-import { Redirect } from 'react-router';
 
 
 class AddEntry extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props);
     this.state = {
       journalTitle: '',
       journalContent: '',
@@ -43,7 +43,7 @@ class AddEntry extends Component {
 
 
   render() {
-    if (this.props.userId) {
+    if (!['/login', '/signup'].includes(this.props.location.pathname)) {
       return (
         <div>
           <Button
@@ -113,13 +113,14 @@ class AddEntry extends Component {
           <Snackbar open={this.state.showSnackbar} autoHideDuration={2000} severity='success' onClose={() => this.setState({ showSnackbar: false })} >
             <Alert variant='filled' severity='success'>
               Entry Added !
-            </Alert>
+              </Alert>
           </Snackbar>
         </div>
       );
     } else {
-      return <Redirect to='/login' />
+      return null
     }
+
   }
 }
 
@@ -129,4 +130,4 @@ const mapStateToProps = state => ({
   userId: state.user.id
 })
 
-export default connect(mapStateToProps, { addEntry })(AddEntry)
+export default connect(mapStateToProps, { addEntry })(withRouter(AddEntry))
