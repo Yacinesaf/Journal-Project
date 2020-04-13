@@ -1,31 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AddIcon from '@material-ui/icons/Add';
-import { withRouter } from 'react-router-dom';
 import '../style.css'
-import { connect } from 'react-redux'
 import { Grid, Typography, Button, Dialog, DialogContent, TextField, TextareaAutosize, IconButton, CircularProgress } from '@material-ui/core';
 import bgImg from '../formBackground.png'
-import { addEntry, showSnackbar } from '../reduxStore/actions.js'
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
-class AddEntry extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      journalTitle: '',
-      journalContent: '',
-      isDialogOpen: false,
-      isLoading: false
-    }
-  }
+function AddEntry({ addEntry, showSnackbar }) {
+  const theme = useTheme();
+  const xsOnly = useMediaQuery(theme.breakpoints.only('xs'));
+  const [journalTitle, setJournalTilte] = React.useState('')
+  const [journalContent, setJournalContent] = React.useState('')
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
-  generateEntry() {
+  const generateEntry = () => {
     let date = new Date();
     let day = date.getDate()
     return {
-      body: this.state.journalContent,
-      title: this.state.journalTitle,
+      body: journalContent,
+      title: journalTitle,
       date: {
         day: day < 10 ? '0' + day : day,
         month: date.toLocaleString('default', { month: 'short' }),
@@ -34,95 +30,79 @@ class AddEntry extends Component {
       }
     }
   }
-
-  closeDialog() {
-    this.setState({ isDialogOpen: false });
+  const closeDialog = () => {
+    setIsDialogOpen(true)
   };
 
-
-  render() {
-    if (!['/login', '/signup'].includes(this.props.location.pathname)) {
-      return (
-        <div>
-          <Button
-            onClick={() => this.setState({ isDialogOpen: true })}
-            variant='contained'
-            color='inherit'
-            style={{
-              position: 'fixed',
-              bottom: '40px',
-              right: '40px',
-              boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
-              marginTop: 30,
-              color: '#F5F5F5',
-              backgroundColor: '#212121',
-              borderRadius: 100,
-              textTransform: 'none',
-              fontSize: 25,
-              padding: 20,
-            }}>
-            <AddIcon fontSize='large' style={{ color: '#F5F5F5' }} />
-          </Button>
-          <Dialog
-            fullScreen
-            onEscapeKeyDown={() => this.setState({ isDialogOpen: false })}
-            open={this.state.isDialogOpen}>
-            <DialogContent style={{ paddingLeft: 50, backgroundColor: '#f4f6f8' }}>
-              <IconButton onClick={() => this.setState({ isDialogOpen: false })} style={{ float: 'right', paddingRight: 15 }}>
-                <CancelIcon style={{ color: '#5254aa', fontSize: 60 }} />
-              </IconButton>
-              <Grid container justify='center'>
-                <Grid item xs={5}>
-                  <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Title</Typography>
-                  <TextField
-                    onChange={(e) => this.setState({ journalTitle: e.target.value })}
-                    required
-                    variant='outlined'
-                    placeholder='Type your title here'
-                    id="title"
-                    type="text"
-                    fullWidth
-                    style={{ margin: '0px 0px 40px', backgroundColor: 'white' }}
-                  />
-                  <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >What's on your mind</Typography>
-                  <TextareaAutosize onChange={(e) => this.setState({ journalContent: e.target.value })} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 400, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16, backgroundColor: 'white' }} />
-                  <Button
-                    disabled={this.state.isLoading}
-                    onClick={() => {
-                      this.props.addEntry(this.generateEntry()).then(() => {
-                        this.props.showSnackbar('Entry created', 'success')
-                        this.setState({ isLoading: false })
-                        this.closeDialog()
-                      })
-                      .catch(error => {
-                        this.props.showSnackbar(error.message, 'error')
-                      })
-                    }}
-                    variant='contained'
-                    style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}
-                  >
-                    {this.state.isLoading ? <CircularProgress size={20} style={{ color: 'white', padding: '5px 25px' }} /> : 'Submit'}
-                  </Button>
-                </Grid>
-                <Grid item xs={6} style={{ paddingTop: 120, paddingLeft: 20 }}>
-                  <div style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: 400 }} />
-                </Grid>
-              </Grid>
-            </DialogContent>
-          </Dialog>
-        </div>
-      );
-    } else {
-      return null
-    }
-
-  }
+  return (
+    <div>
+      <div
+        onClick={() => setIsDialogOpen(true)}
+        style={{
+          display : 'flex',
+          justifyContent : 'center',
+          alignItems : 'center',
+          height :xsOnly ? 10 : 35,
+          width :xsOnly ? 10 : 35,
+          position: 'fixed',
+          bottom: xsOnly ? 15 : 40,
+          right: xsOnly ? 15 : 40,
+          boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+          color: '#F5F5F5',
+          backgroundColor: '#212121',
+          borderRadius: 100,
+          padding: 20,
+        }}>
+        <AddIcon fontSize={xsOnly ? 'default' : 'large'} style={{ color: '#F5F5F5' }} />
+      </div>
+      <Dialog
+        fullScreen
+        onEscapeKeyDown={() => setIsDialogOpen(false)}
+        open={isDialogOpen}>
+        <DialogContent style={{ paddingLeft: 50, backgroundColor: '#f4f6f8' }}>
+          <IconButton onClick={() => setIsDialogOpen(false)} style={{ float: 'right', paddingRight: 15 }}>
+            <CancelIcon style={{ color: '#5254aa', fontSize: 60 }} />
+          </IconButton>
+          <Grid container justify='center'>
+            <Grid item xs={5}>
+              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Title</Typography>
+              <TextField
+                onChange={(e) => setJournalTilte(e.target.value)}
+                required
+                variant='outlined'
+                placeholder='Type your title here'
+                id="title"
+                type="text"
+                fullWidth
+                style={{ margin: '0px 0px 40px', backgroundColor: 'white' }}
+              />
+              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >What's on your mind</Typography>
+              <TextareaAutosize onChange={(e) => setJournalContent(e.target.value)} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 400, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16, backgroundColor: 'white' }} />
+              <Button
+                disabled={isLoading}
+                onClick={() => {
+                  addEntry(generateEntry()).then(() => {
+                    showSnackbar('Entry created', 'success')
+                    setIsLoading(false)
+                    closeDialog()
+                  })
+                    .catch(error => {
+                      showSnackbar(error.message, 'error')
+                    })
+                }}
+                variant='contained'
+                style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}
+              >
+                {isLoading ? <CircularProgress size={20} style={{ color: 'white', padding: '5px 25px' }} /> : 'Submit'}
+              </Button>
+            </Grid>
+            <Grid item xs={6} style={{ paddingTop: 120, paddingLeft: 20 }}>
+              <div style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: 400 }} />
+            </Grid>
+          </Grid>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
 }
-
-
-const mapStateToProps = state => ({
-  entries: state.entries.entriesList,
-  userId: state.user.id
-})
-
-export default connect(mapStateToProps, { addEntry, showSnackbar })(withRouter(AddEntry))
+export default AddEntry;
