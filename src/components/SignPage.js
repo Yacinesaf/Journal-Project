@@ -8,9 +8,14 @@ import signState from '../assets/loginAsset.svg'
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import '../style.css'
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 function SignPage({ setUser, loginAction, showSnackbar }) {
-
+  
+  const theme = useTheme();
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   let history = useHistory();
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
@@ -45,7 +50,7 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
   return (
     <div className='appBackground' style={{ height: "100vh" }}>
       <Grid container direction="row" justify='center' alignItems="center" style={{ height: '100%' }}>
-        <Grid item xs={11} sm={8} lg={6} xl={3} style={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid item xs={11} sm={8} lg={4} xl={4} style={{ display: 'flex', justifyContent: 'center' }}>
           <Card style={{ maxWidth: '365px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 30 }} elevation={10}>
             <Avatar style={{ backgroundColor: '#212121', marginBottom: 12 }}  >
               <LockOutlinedIcon />
@@ -118,32 +123,34 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
               {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
             </Button>
             {location.pathname === '/signup' ?
-              <div style={{ width: '100%', textAlign: 'right', paddingTop : 5 }}>
-                <Link to='/login' style={{color: 'black', paddingTop: 15 }}>
+              <div style={{ width: '100%', textAlign: 'right', paddingTop: 5 }}>
+                <Link to='/login' style={{ color: 'black', paddingTop: 15 }}>
                   <Typography variant='caption'>Already have an account? Log In</Typography>
                 </Link>
               </div>
               :
-              <div style={{ width: '100%', textAlign: 'right', paddingTop : 5 }}>
-                <Link to='/signup' style={{color: 'black', paddingTop: 15 }}>
+              <div style={{ width: '100%', textAlign: 'right', paddingTop: 5 }}>
+                <Link to='/signup' style={{ color: 'black', paddingTop: 15 }}>
                   <Typography variant='caption'>Don't have an account? Sign up</Typography>
                 </Link>
               </div>
             }
           </Card>
         </Grid>
-        <Grid item xs={4}>
-          <div
-            style={{
-              paddingLeft: 60,
-              backgroundImage: `url(${signState})`,
-              backgroundPosition: 'center',
-              backgroundSize: 'contain',
-              width: '100%',
-              height: 400,
-              backgroundRepeat: 'no-repeat',
-            }} />
-        </Grid>
+        {mdDown ? null :
+          <Grid item md={4} style={{paddingLeft : 30}}>
+            <div
+              style={{
+                backgroundImage: `url(${signState})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'contain',
+                width: '100%',
+                height: 300,
+                backgroundRepeat: 'no-repeat',
+              }} />
+          </Grid>
+        }
+
       </Grid>
 
     </div>
