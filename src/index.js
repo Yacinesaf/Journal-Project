@@ -1,14 +1,19 @@
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './index.css';
-import createRoutes from './routes';
+import Routes from './routes';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux'
+import store from './reduxStore/store';
 
-
-const routes = createRoutes();
 ReactDOM.render(
-  routes,
-  document.getElementById('root')
-);
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root'));
 
 // const routes = createRoutes();
 // ReactDOM.render(

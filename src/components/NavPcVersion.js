@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toolbar, AppBar, Button, IconButton, Typography, Avatar, Menu, MenuItem } from '@material-ui/core';
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
 import { signOut } from '../services/apiEndpoints'
@@ -8,7 +8,7 @@ import defaultPic from '../assets/defaultProfilePic.svg'
 import '../style.css'
 
 function NavPcVersion({ userId, profilePic }) {
-
+  let history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   return (
@@ -50,7 +50,7 @@ function NavPcVersion({ userId, profilePic }) {
             vertical: 'top',
             horizontal: 'center',
           }}>
-          <MenuItem style={{ display: 'felx', alignItems: 'center', padding: 10 }}>
+          <MenuItem onClick={()=> setAnchorEl(null)} style={{ display: 'felx', alignItems: 'center', padding: 10 }}>
             <Link to='/profile' style={{ textTransform: 'none', color: 'black', textDecoration: 'none' }}>
               <Typography style={{ flexGrow: 1 }} variant='caption'>Profile</Typography>
             </Link>
@@ -59,8 +59,8 @@ function NavPcVersion({ userId, profilePic }) {
           <MenuItem
             style={{ display: 'felx', alignItems: 'center', padding: 10 }}
             onClick={() => signOut().then(() => {
-              return (
-                <Redirect to='/login' />)
+              history.push('/login')
+              setAnchorEl(null)
             })} >
             <Typography variant='caption' >Sign out</Typography>
             <ExitToAppIcon style={{ paddingLeft: 10 }} />

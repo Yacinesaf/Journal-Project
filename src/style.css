@@ -39,13 +39,22 @@
 }
 
 @keyframes float {
-	0% {
-		transform: translatey(0px);
-	}
-	50% {
-		transform: translatey(-10px);
+  0% {
+    transform: translatey(0px);
   }
-	100% {
-		transform: translatey(0px);
-	}
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.fade-out {
+  animation: fadeout ease 2s;
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }

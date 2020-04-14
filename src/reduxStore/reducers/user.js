@@ -1,7 +1,7 @@
 const initialState = {
   id: null,
-  email: ''
-
+  email: '',
+  
 }
 
 export default function (state = initialState, action) {
