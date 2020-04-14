@@ -18,7 +18,7 @@ class EntriesPageWrapper extends Component {
   }
 
   render() {
-    if (!this.props.userId) {
+    if (this.props.userId) {
       return (
         <EntriesPage
           entries={this.props.entries}

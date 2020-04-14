@@ -131,6 +131,10 @@ function login(email, password) {
     })
 }
 
+function signOut() {
+  return firebase.auth().signOut()
+}
+
 export {
   getEntry,
   getRandomImage,
@@ -139,5 +143,6 @@ export {
   getEntriesCount,
   switchEntries,
   createUser,
-  login
+  login,
+  signOut
 }

@@ -1,10 +1,16 @@
 import React from 'react';
-import { Toolbar, AppBar, Button, IconButton, Typography, Avatar } from '@material-ui/core';
-import { Link } from "react-router-dom";
+import { Toolbar, AppBar, Button, IconButton, Typography, Avatar, Menu, MenuItem } from '@material-ui/core';
+import { Link, Redirect } from "react-router-dom";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonIcon from '@material-ui/icons/Person';
+import { signOut } from '../services/apiEndpoints'
+import defaultPic from '../assets/defaultProfilePic.svg'
 import '../style.css'
 
+function NavPcVersion({ userId, profilePic }) {
 
-function NavPcVersion({userId}) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
   return (
     <AppBar style={{ backgroundColor: '#212121' }}>
       <Toolbar>
@@ -26,10 +32,40 @@ function NavPcVersion({userId}) {
           </div>
         }
         {userId ?
-          <IconButton>
-            <Avatar />
+          <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
+            <Avatar src={profilePic ? profilePic : defaultPic} />
           </IconButton> : null}
-
+        <Menu
+          anchorEl={anchorEl}
+          elevation={4}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={() => setAnchorEl(null)}
+          getContentAnchorEl={null}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}>
+          <MenuItem style={{ display: 'felx', alignItems: 'center', padding: 10 }}>
+            <Link to='/profile' style={{ textTransform: 'none', color: 'black', textDecoration: 'none' }}>
+              <Typography style={{ flexGrow: 1 }} variant='caption'>Profile</Typography>
+            </Link>
+            <PersonIcon style={{ paddingLeft: 17 }} />
+          </MenuItem>
+          <MenuItem
+            style={{ display: 'felx', alignItems: 'center', padding: 10 }}
+            onClick={() => signOut().then(() => {
+              return (
+                <Redirect to='/login' />)
+            })} >
+            <Typography variant='caption' >Sign out</Typography>
+            <ExitToAppIcon style={{ paddingLeft: 10 }} />
+          </MenuItem>
+        </Menu>
       </Toolbar>
     </AppBar>
   );
