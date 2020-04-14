@@ -11,7 +11,6 @@ import EntriesPageWrapper from './components/EntriesPageWrapper';
 import NavPcVersionWrapper from './components/NavPcVersionWrapper';
 import AddEntryWrapper from './components/AddEntryWrapper';
 import loadingImg from './assets/loading.svg'
-import style from './style.css'
 
 function Routes() {
   let [changedPath, setChangedPath] = React.useState(false)
@@ -49,8 +48,8 @@ function Routes() {
             backgroundImage: `url(${loadingImg})`,
             backgroundPosition: 'center',
             backgroundSize: 'contain',
-            height: 600,
-            width: 600,
+            height: 500,
+            width: 500,
             backgroundRepeat: 'no-repeat'
 
           }} /> :
