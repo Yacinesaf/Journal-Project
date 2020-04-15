@@ -6,6 +6,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import { signOut } from '../services/apiEndpoints'
 import defaultPic from '../assets/defaultProfilePic.svg'
 import '../style.css'
+import store from '../reduxStore/store';
+
 
 function NavPcVersion({ userId, profilePic }) {
   let history = useHistory();
@@ -50,20 +52,21 @@ function NavPcVersion({ userId, profilePic }) {
             vertical: 'top',
             horizontal: 'center',
           }}>
-          <MenuItem onClick={()=> setAnchorEl(null)} style={{ display: 'felx', alignItems: 'center', padding: 10 }}>
+          <MenuItem onClick={() => setAnchorEl(null)} style={{ display: 'felx', alignItems: 'center', padding: 10 }}>
+            <PersonIcon style={{ paddingRight: 17 }} />
             <Link to='/profile' style={{ textTransform: 'none', color: 'black', textDecoration: 'none' }}>
               <Typography style={{ flexGrow: 1 }} variant='caption'>Profile</Typography>
             </Link>
-            <PersonIcon style={{ paddingLeft: 17 }} />
           </MenuItem>
           <MenuItem
             style={{ display: 'felx', alignItems: 'center', padding: 10 }}
             onClick={() => signOut().then(() => {
+              store.dispatch({type : 'LOG_OUT', payload : {id : null, email : ''}})
               history.push('/login')
               setAnchorEl(null)
             })} >
+            <ExitToAppIcon style={{ paddingRight: 10 }} />
             <Typography variant='caption' >Sign out</Typography>
-            <ExitToAppIcon style={{ paddingLeft: 10 }} />
           </MenuItem>
         </Menu>
       </Toolbar>

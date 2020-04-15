@@ -11,6 +11,7 @@ import EntriesPageWrapper from './components/EntriesPageWrapper';
 import NavPcVersionWrapper from './components/NavPcVersionWrapper';
 import AddEntryWrapper from './components/AddEntryWrapper';
 import loadingImg from './assets/loading.svg'
+import Profile from './components/Profile';
 
 function Routes() {
   let [changedPath, setChangedPath] = React.useState(false)
@@ -23,11 +24,13 @@ function Routes() {
         history.push('/entries')
         setChangedPath(true)
       }
-    } else {
-      if (!changedPath) {
-        history.push('/login')
-      }
-    }
+    } 
+    // else {
+    //   if (!changedPath) {
+    //     history.push('/login')
+    //     setChangedPath(true)
+    //   }
+    // }
     setIsLoading(false)
   });
   return (
@@ -62,6 +65,7 @@ function Routes() {
           <Route exact path='/entries/:id' component={EntryWrapper} />
           <Route exact path='/signup' component={SignPageWrapper} />
           <Route exact path='/login' component={SignPageWrapper} />
+          <Route exact path='/profile' component={Profile} />
         </div>}
 
     </div>
