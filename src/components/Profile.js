@@ -23,17 +23,17 @@ function Profile() {
               <Typography variant='h6'>Email</Typography>
               <Paper elevation='3' style={{ width: '100%', display: 'flex' }} />
               <Typography>{email}</Typography>
-              <EditIcon /
+              <EditIcon />
             </Grid>
             <Grid item xs={4}>
-                <Typography variant='h6'>Password</Typography>
-                <Paper elevation='3' style={{ width: '100%', display: 'flex' }} />
-                <Typography></Typography>
-                <EditIcon /
+              <Typography variant='h6'>Password</Typography>
+              <Paper elevation='3' style={{ width: '100%', display: 'flex' }} />
+              <Typography></Typography>
+              <EditIcon />
             </Grid>
           </Grid>
-            </Grid>
-          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 }
