@@ -61,11 +61,12 @@ function Routes() {
           <AddEntryWrapper />
           <SnackbarComp />
           <Route exact path='/' component={LandingPage} />
-          <Route exact path='/entries' component={EntriesPageWrapper} />
+          <Route exact path='/entries' component={Profile} />
           <Route exact path='/entries/:id' component={EntryWrapper} />
           <Route exact path='/signup' component={SignPageWrapper} />
           <Route exact path='/login' component={SignPageWrapper} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path='/contact' component={Profile} />
         </div>}
 
     </div>

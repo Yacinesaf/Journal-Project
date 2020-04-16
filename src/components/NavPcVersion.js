@@ -52,16 +52,16 @@ function NavPcVersion({ userId, profilePic }) {
             vertical: 'top',
             horizontal: 'center',
           }}>
-          <MenuItem onClick={() => setAnchorEl(null)} style={{ display: 'felx', alignItems: 'center', padding: 10 }}>
-            <PersonIcon style={{ paddingRight: 17 }} />
-            <Link to='/profile' style={{ textTransform: 'none', color: 'black', textDecoration: 'none' }}>
-              <Typography style={{ flexGrow: 1 }} variant='caption'>Profile</Typography>
-            </Link>
-          </MenuItem>
+          <Link to='/profile' style={{ textTransform: 'none', color: 'black', textDecoration: 'none' }}>
+            <MenuItem onClick={() => setAnchorEl(null)} style={{ display: 'felx', alignItems: 'center', padding: 10 }}>
+              <PersonIcon style={{ paddingRight: 17 }} />
+              <Typography variant='caption'>Profile</Typography>
+            </MenuItem>
+          </Link>
           <MenuItem
             style={{ display: 'felx', alignItems: 'center', padding: 10 }}
             onClick={() => signOut().then(() => {
-              store.dispatch({type : 'LOG_OUT', payload : {id : null, email : ''}})
+              store.dispatch({ type: 'LOG_OUT', payload: { id: null, email: '' } })
               history.push('/login')
               setAnchorEl(null)
             })} >

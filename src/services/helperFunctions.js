@@ -32,16 +32,20 @@ function monthFormating(month) {
 }
 
 function formatDate(firebaseDate) {
-  // firebase.toDate() outputs Sun Mar 29 2020 00:00:00 GMT-0400 (Eastern Daylight Time)
   let date = firebaseDate.toDate().toString().split(' ');
   return {
-    day : date[2],
-    month : date[1],
-    year : date[3]
+    day: date[2],
+    month: date[1],
+    year: date[3]
   }
 }
 
-export { 
-  monthFormating, 
-  formatDate 
+function emailToUsername(email) {
+  return email.split('@')[0]
+}
+
+export {
+  monthFormating,
+  formatDate,
+  emailToUsername
 }
