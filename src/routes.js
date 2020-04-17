@@ -12,8 +12,14 @@ import NavPcVersionWrapper from './components/NavPcVersionWrapper';
 import AddEntryWrapper from './components/AddEntryWrapper';
 import loadingImg from './assets/loading.svg'
 import Profile from './components/Profile';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import NavMobile from './components/NavMobile';
 
 function Routes() {
+
+  const theme = useTheme();
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   let [changedPath, setChangedPath] = React.useState(false)
   let [isLoading, setIsLoading] = React.useState(true)
   let history = useHistory()
@@ -24,7 +30,7 @@ function Routes() {
         history.push('/entries')
         setChangedPath(true)
       }
-    } 
+    }
     // else {
     //   if (!changedPath) {
     //     history.push('/login')
@@ -57,16 +63,15 @@ function Routes() {
 
           }} /> :
         <div>
-          <NavPcVersionWrapper />
-          <AddEntryWrapper />
-          <SnackbarComp />
-          <Route exact path='/' component={LandingPage} />
-          <Route exact path='/entries' component={Profile} />
-          <Route exact path='/entries/:id' component={EntryWrapper} />
-          <Route exact path='/signup' component={SignPageWrapper} />
-          <Route exact path='/login' component={SignPageWrapper} />
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/contact' component={Profile} />
+        {smDown ? <NavMobile /> : <NavPcVersionWrapper />}
+        <AddEntryWrapper />
+        <SnackbarComp />
+        <Route exact path='/' component={LandingPage} />
+        <Route exact path='/entries' component={EntriesPageWrapper} />
+        <Route exact path='/entries/:id' component={EntryWrapper} />
+        <Route exact path='/signup' component={SignPageWrapper} />
+        <Route exact path='/login' component={SignPageWrapper} />
+        <Route exact path='/profile' component={Profile} />
         </div>}
 
     </div>

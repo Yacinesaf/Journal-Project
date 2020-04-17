@@ -1,12 +1,12 @@
 import React from 'react';
 import { Toolbar, AppBar, Button, IconButton, Typography, Avatar, Menu, MenuItem } from '@material-ui/core';
-import { Link, useHistory } from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
+import { Link, useHistory } from "react-router-dom";
 import { signOut } from '../services/apiEndpoints'
+import store from '../reduxStore/store';
 import defaultPic from '../assets/defaultProfilePic.svg'
 import '../style.css'
-import store from '../reduxStore/store';
 
 
 function NavPcVersion({ userId, profilePic }) {

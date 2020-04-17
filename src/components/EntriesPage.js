@@ -17,10 +17,10 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
 
 
   return (
-    <div className='appBackground' style={{ minHeight: '100vh', paddingTop: 64 }}>
+    <div className='appBackground' style={{ minHeight: 'calc(100vh - 64px)', paddingTop: smDown ? 0 : 64 }}>
       <div style={{ textAlign: 'center' }}>
         <div style={{ widht: '100%', textAlign: 'center' }}>
-          <Typography variant={smDown ? "h5" : 'h3'} style={{ color: '#212121', textAlign: 'center', paddingTop: 40, fontWeight: smDown ? 450 : 400 }}>{`Welcome ${emailToUsername(email)}`}</Typography>
+          <Typography variant={smDown ? "h5" : 'h3'} style={{ color: '#212121', textAlign: 'center', paddingTop: 30, fontWeight: smDown ? 450 : 400 }}>{`Welcome ${emailToUsername(email)}`}</Typography>
           {!entries.length && !fetchingEntries ? <img alt='empty' src={emptyState} style={{ height: 700, width: 700 }} /> : null}
         </div>
         {fetchingEntries ?
@@ -49,7 +49,7 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
               </Grid>
             </Grid>
           </Grid>}
-        <div>
+        <div style={{paddingBottom : smDown ? 60 : 0}}>
           <IconButton
             disabled={currentPage === 1}
             style={{ margin: 15, textAlign: 'center' }}

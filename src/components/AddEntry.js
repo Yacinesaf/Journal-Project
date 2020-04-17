@@ -10,7 +10,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function AddEntry({ addEntry, showSnackbar }) {
   const theme = useTheme();
-  const xsOnly = useMediaQuery(theme.breakpoints.only('xs'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const [journalTitle, setJournalTilte] = React.useState('')
   const [journalContent, setJournalContent] = React.useState('')
   const [isDialogOpen, setIsDialogOpen] = React.useState(false)
@@ -42,18 +42,18 @@ function AddEntry({ addEntry, showSnackbar }) {
           display : 'flex',
           justifyContent : 'center',
           alignItems : 'center',
-          height :xsOnly ? 10 : 35,
-          width :xsOnly ? 10 : 35,
+          height :smDown ? 15 : 35,
+          width :smDown ? 15 : 35,
           position: 'fixed',
-          bottom: xsOnly ? 15 : 40,
-          right: xsOnly ? 15 : 40,
+          bottom: smDown ? 20 : 40,
+          right: smDown ? 'calc(50% - 27.5px)' : 40,
           boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
           color: '#F5F5F5',
-          backgroundColor: '#212121',
+          backgroundColor: 'rgb(82, 84, 170)',
           borderRadius: 100,
           padding: 20,
         }}>
-        <AddIcon fontSize={xsOnly ? 'default' : 'large'} style={{ color: '#F5F5F5' }} />
+        <AddIcon fontSize={smDown ? 'default' : 'large'} style={{ color: '#F5F5F5' }} />
       </div>
       <Dialog
         fullScreen
