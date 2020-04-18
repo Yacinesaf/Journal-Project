@@ -16,6 +16,7 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
   
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   let history = useHistory();
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
@@ -48,7 +49,7 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
   }
 
   return (
-    <div className='appBackground' style={{ height: "100vh" }}>
+    <div className='appBackground' style={{ height: smDown ? "calc(100vh - 40px)" : '100vh' }}>
       <Grid container direction="row" justify='center' alignItems="center" style={{ height: '100%' }}>
         <Grid item xs={11} sm={8} lg={4} xl={4} style={{ display: 'flex', justifyContent: 'center' }}>
           <Card style={{ maxWidth: '365px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 30 }} elevation={10}>

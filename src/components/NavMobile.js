@@ -8,6 +8,8 @@ import { signOut } from '../services/apiEndpoints'
 import store from '../reduxStore/store';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
+import MobileNavLoggedOut from './MobileNavLoggedOut';
+
 
 class NavMobile extends Component {
   render() {
@@ -52,12 +54,9 @@ class NavMobile extends Component {
               </div>}
 
           </div>
-          : 
-          <div>
-              
-          </div>
+          :
+          <MobileNavLoggedOut />
         }
-
       </div>
     );
   }
