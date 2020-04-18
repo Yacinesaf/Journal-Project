@@ -18,40 +18,42 @@ function Profile() {
 
     <div>
       {mdDown ?
-        <div>
-          <Avatar style={{ height: 140, width: 140, paddingTop: 60, margin :  '0px auto' }} src={defaultPic} />
-          <Grid container justify='center' className='appBackground' style={{ minHeight: '100vh', paddingTop : 20}}>
-            <Grid item xs={11}>
-              <Grid container justify='center'>
-                <Grid item xs={10} sm={7} style={{ padding: '20px 0px' }}>
-                  <Typography variant='h6'>Username</Typography>
-                  <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }}>
-                    <Typography style={{ flexGrow: 1, padding : 10 }} >{emailToUsername(store.getState().user.email)}</Typography>
-                    <EditIcon style={{ cursor: 'pointer', padding : 10 }} />
-                  </Paper>
-                </Grid>
-                <Grid item xs={10} sm={7} style={{ padding: '20px 0px' }}>
-                  <Typography variant='h6'>Email</Typography>
-                  <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0'}}>
-                    <Typography style={{ flexGrow: 1, padding : 10 }} >{store.getState().user.email}</Typography>
-                    <EditIcon style={{ cursor: 'pointer', padding : 10 }} />
-                  </Paper>
-                </Grid>
-                <Grid item xs={10} sm={7} style={{ padding: '20px 0px' }}>
-                  <Typography variant='h6'>Password</Typography>
-                  <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }} >
-                    <Typography style={{ flexGrow: 1, padding : 10 }} >•••••••••••</Typography>
-                    <EditIcon style={{ cursor: 'pointer', padding : 10 }} />
-                  </Paper>
+        <div style={{ minHeight: '100vh' }}>
+          <div style={{paddingTop : 60}}>
+            <Avatar style={{ height: 140, width: 140, margin: '0px auto' }} src={defaultPic} />
+            <Grid container justify='center' className='appBackground' style={{ paddingTop: 20 }}>
+              <Grid item xs={11}>
+                <Grid container justify='center'>
+                  <Grid item xs={10} sm={7} style={{ padding: '20px 0px' }}>
+                    <Typography variant='h6'>Username</Typography>
+                    <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }}>
+                      <Typography style={{ flexGrow: 1, padding: 10 }} >{emailToUsername(store.getState().user.email)}</Typography>
+                      <EditIcon style={{ cursor: 'pointer', padding: 10 }} />
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={10} sm={7} style={{ padding: '20px 0px' }}>
+                    <Typography variant='h6'>Email</Typography>
+                    <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }}>
+                      <Typography style={{ flexGrow: 1, padding: 10 }} >{store.getState().user.email}</Typography>
+                      <EditIcon style={{ cursor: 'pointer', padding: 10 }} />
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={10} sm={7} style={{ padding: '20px 0px' }}>
+                    <Typography variant='h6'>Password</Typography>
+                    <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }} >
+                      <Typography style={{ flexGrow: 1, padding: 10 }} >•••••••••••</Typography>
+                      <EditIcon style={{ cursor: 'pointer', padding: 10 }} />
+                    </Paper>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </div>
         </div>
 
-        : <Grid container className='appBackground' style={{ minHeight: '100vh'}}>
+        : <Grid container className='appBackground' style={{ minHeight: '100vh' }}>
           <Grid item sm={2} md={2} lg={3} style={{ padding: '100 0 30 0', display: 'flex', justifyContent: 'center' }}>
-            <Avatar style={{ height: 200, width: 200, marginTop : 100 }} src={defaultPic} />
+            <Avatar style={{ height: 200, width: 200, marginTop: 100 }} src={defaultPic} />
           </Grid>
           <Divider orientation='vertical' variant='middle' style={{ backgroundColor: '#dcdcdc', height: 600, marginTop: 80 }} />
           <Grid item sm={9} md={9} lg={7} xl={6} style={{ display: 'flex' }}>
@@ -59,22 +61,22 @@ function Profile() {
               <Grid item xs={4} style={{ padding: '20px 0px' }}>
                 <Typography style={{ paddingBottom: 5 }} variant='h6'>Username</Typography>
                 <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }}>
-                  <Typography style={{ flexGrow: 1, padding : 10 }} >{emailToUsername(store.getState().user.email)}</Typography>
-                  <EditIcon style={{ cursor: 'pointer', padding : 10 }} />
+                  <Typography style={{ flexGrow: 1, padding: 10 }} >{emailToUsername(store.getState().user.email)}</Typography>
+                  <EditIcon style={{ cursor: 'pointer', padding: 10 }} />
                 </Paper>
               </Grid>
               <Grid item xs={4} style={{ padding: '20px 0px' }}>
                 <Typography style={{ paddingBottom: 5 }} variant='h6'>Email</Typography>
                 <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }}>
-                  <Typography style={{ flexGrow: 1, padding : 10 }} >{store.getState().user.email}</Typography>
-                  <EditIcon style={{ cursor: 'pointer', padding : 10 }} />
+                  <Typography style={{ flexGrow: 1, padding: 10 }} >{store.getState().user.email}</Typography>
+                  <EditIcon style={{ cursor: 'pointer', padding: 10 }} />
                 </Paper>
               </Grid>
               <Grid item xs={4} style={{ padding: '20px 0px' }}>
                 <Typography style={{ paddingBottom: 5 }} variant='h6'>Password</Typography>
                 <Paper elevation={3} style={{ width: '100%', display: 'flex', padding: '10 0' }} >
-                  <Typography style={{ flexGrow: 1, padding : 10 }} >•••••••••••</Typography>
-                  <EditIcon style={{ cursor: 'pointer', padding : 10 }} />
+                  <Typography style={{ flexGrow: 1, padding: 10 }} >•••••••••••</Typography>
+                  <EditIcon style={{ cursor: 'pointer', padding: 10 }} />
                 </Paper>
               </Grid>
             </Grid>
