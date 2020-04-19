@@ -8,7 +8,7 @@ import AddEntry from './AddEntry';
 
 class AddEntryWrapper extends Component {
   render() {
-    if (['/login', '/signup', '/landingPage', '/about'].includes(this.props.location.pathname) || (['/contact', '/about'].includes(this.props.location.pathname) && !this.props.userId)) {
+    if (['/login', '/signup', '/', '/about'].includes(this.props.location.pathname) || (['/contact', '/aboutus'].includes(this.props.location.pathname) && !this.props.userId)) {
       return null
     } else {
       return <AddEntry addEntry={this.props.addEntry} showSnackbar={this.props.showSnackbar} />

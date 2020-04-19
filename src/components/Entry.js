@@ -10,7 +10,7 @@ function Entry({ title, body, reading }) {
 
   return (
     <div>
-      <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ minHeight: '100vh', backgroundColor: '#f2f2f2' }}>
+      <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ minHeight: '100vh' }}>
         <Grid item xs={11} md={10} >
           <Typography variant={mdDown ? 'h4' : 'h3'} style={{ fontWeight: 550, textAlign: mdDown ? 'center' : 'left', paddingTop: 130 }} color='initial'>{title}</Typography>
         </Grid>

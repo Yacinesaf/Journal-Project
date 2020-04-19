@@ -135,6 +135,21 @@ function signOut() {
   return firebase.auth().signOut()
 }
 
+function getParagraph() {
+  return fetch("https://mashape-community-skate-ipsum.p.rapidapi.com/2/0/JSON", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "mashape-community-skate-ipsum.p.rapidapi.com",
+      "x-rapidapi-key": "33bfbd583amshc3ab9d939cbd064p1b78dbjsnb9b3cbe85197"
+    }
+  })
+    .then(response => {
+      return response.json().then(res => {
+        return res
+      })
+    })
+}
+
 export {
   getEntry,
   getRandomImage,
@@ -144,5 +159,6 @@ export {
   switchEntries,
   createUser,
   login,
-  signOut
+  signOut,
+  getParagraph
 }
