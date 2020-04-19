@@ -68,6 +68,4 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
   );
 }
 
-
-
 export default EntriesPage

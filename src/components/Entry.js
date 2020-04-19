@@ -10,6 +10,7 @@ function Entry({ title, body, reading }) {
   const history = useHistory()
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <div>
@@ -20,7 +21,7 @@ function Entry({ title, body, reading }) {
           color: 'rgb(82, 84, 170)',
           paddingLeft: 25,
           position: "absolute",
-          top: mdDown ? 30 : 100,
+          top: smDown ? 30 : 100,
           cursor: 'pointer'
         }} />
       <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ minHeight: '100vh', backgroundColor: '#f2f2f2' }}>
