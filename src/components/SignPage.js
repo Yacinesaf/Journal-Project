@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Grid, Card } from '@material-ui/core';
+import { Avatar, Typography, TextField, Button, Grid, Card } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -13,17 +13,18 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
 function SignPage({ setUser, loginAction, showSnackbar }) {
-  
+
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   let history = useHistory();
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
-  const [checkBoxChecked, setCheckBoxChecked] = useState(false);
   const [password, setPassword] = useState(null)
+  const [passwordConfirm, setPasswordConfirm] = useState(null)
   const [email, setEmail] = useState(null)
   const passwordErrorMsg = 'Password needs to be at least 6 characters';
+  const passwordConfirmationError = 'Password does not match';
   const emailErrorMsg = 'Invalid Email';
 
 
@@ -35,6 +36,9 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
 
   const isPasswordValid = (password) => {
     return !!password && password.length >= 6
+  }
+  const passwordConfirmation = (password) => {
+    return !!password && password === passwordConfirm
   }
   const changeEmail = (event) => {
     setEmail(event.target.value)
@@ -53,7 +57,7 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
       <Grid container direction="row" justify='center' alignItems="center" style={{ height: '100%' }}>
         <Grid item xs={11} sm={8} lg={4} xl={4} style={{ display: 'flex', justifyContent: 'center' }}>
           <Card style={{ maxWidth: '365px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 30 }} elevation={10}>
-            <Avatar style={{ backgroundColor: '#212121', marginBottom: 12 }}  >
+            <Avatar style={{ backgroundColor: 'rgb(82, 84, 170)', marginBottom: 12 }}  >
               <LockOutlinedIcon />
             </Avatar>
             <Typography align='center' variant='h5'>
@@ -84,14 +88,20 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
                 style={{ marginBottom: 4 }}
                 fullWidth={true} label="Password"
                 variant="outlined" />
+              {location.pathname === '/signup' ?
+                <TextField
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                  error={password !== null && !passwordConfirmation(password)}
+                  helperText={password !== null && !passwordConfirmation(password) ? passwordConfirmationError : ''}
+                  id="passwordConfirm"
+                  style={{ margin: '20px 0px' }}
+                  type='password'
+                  fullWidth={true} label="Confirm Password"
+                  variant="outlined" />
+              :null}
+
               {location.pathname === '/login' ?
                 <Typography variant='caption'>Forgot your password?</Typography>
-                : null}
-              {location.pathname === '/signup' ?
-                <FormControlLabel
-                  onClick={(e) => { e.preventDefault(); setCheckBoxChecked(!checkBoxChecked) }}
-                  control={<Checkbox style={{ color: checkBoxChecked ? '#212121' : '' }} checked={checkBoxChecked} />}
-                  label="Accept the terms & conditions" />
                 : null}
             </form>
             <Button
@@ -119,7 +129,7 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
               }}
               fullWidth={true}
               variant="contained"
-              style={{ backgroundColor: isFormValid(email, password) ? '#212121' : '', color: isFormValid(email, password) ? 'white' : '', marginTop: 24 }}
+              style={{ backgroundColor: isFormValid(email, password) ? 'rgb(82, 84, 170)' : '', color: isFormValid(email, password) ? 'white' : '', marginTop: 24 }}
               size='large'>
               {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
             </Button>
@@ -139,7 +149,7 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
           </Card>
         </Grid>
         {mdDown ? null :
-          <Grid item md={4} style={{paddingLeft : 30}}>
+          <Grid item md={4} style={{ paddingLeft: 30 }}>
             <div
               style={{
                 backgroundImage: `url(${signState})`,
