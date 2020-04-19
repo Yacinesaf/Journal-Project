@@ -21,10 +21,8 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
   const [password, setPassword] = useState(null)
-  const [passwordConfirm, setPasswordConfirm] = useState(null)
   const [email, setEmail] = useState(null)
   const passwordErrorMsg = 'Password needs to be at least 6 characters';
-  const passwordConfirmationError = 'Password does not match';
   const emailErrorMsg = 'Invalid Email';
 
 
@@ -36,9 +34,6 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
 
   const isPasswordValid = (password) => {
     return !!password && password.length >= 6
-  }
-  const passwordConfirmation = (password) => {
-    return !!password && password === passwordConfirm
   }
   const changeEmail = (event) => {
     setEmail(event.target.value)
@@ -88,18 +83,6 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
                 style={{ marginBottom: 4 }}
                 fullWidth={true} label="Password"
                 variant="outlined" />
-              {location.pathname === '/signup' ?
-                <TextField
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
-                  error={password !== null && !passwordConfirmation(password)}
-                  helperText={password !== null && !passwordConfirmation(password) ? passwordConfirmationError : ''}
-                  id="passwordConfirm"
-                  style={{ margin: '20px 0px' }}
-                  type='password'
-                  fullWidth={true} label="Confirm Password"
-                  variant="outlined" />
-              :null}
-
               {location.pathname === '/login' ?
                 <Typography variant='caption'>Forgot your password?</Typography>
                 : null}

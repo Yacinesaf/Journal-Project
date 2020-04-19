@@ -18,12 +18,14 @@ function NavPcVersion({ userId, profilePic }) {
       <Toolbar>
         <Link to='/' style={{ textDecoration: 'none', color: 'white', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
           <img style={{ width: 40, height: 40 }} alt='logo' src={logo} />
-          <Typography style={{color : 'white', paddingLeft : 5}} >Slice Of Life</Typography>
+          <Typography style={{ color: 'white', paddingLeft: 5 }} >Slice Of Life</Typography>
         </Link>
         {userId ? <Link to='/entries' style={{ textDecoration: 'none' }}>
           <Button className='buttonStyle'>Entries</Button>
-        </Link> :null}
-        <Button className='buttonStyle' >Contact</Button>
+        </Link> : null}
+        <Link to='/contact' style={{ textDecoration: 'none' }}>
+          <Button className='buttonStyle' >Contact</Button>
+        </Link>
         {userId ? null :
           <div>
             <Button className='buttonStyle' style={{ margin: '0px 20px' }}>About</Button>

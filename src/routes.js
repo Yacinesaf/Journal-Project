@@ -17,6 +17,7 @@ import Aboutus from './components/Aboutus';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import NavMobile from './components/NavMobile';
+import BackButton from './components/BackButton';
 
 
 function Routes() {
@@ -51,7 +52,7 @@ function Routes() {
         justifyContent: 'center',
         alignItems: 'center'
       }
-        : {}}>
+        : { minHeight: '100vh' }}>
       {isLoading ?
         <div
           style={{
@@ -66,17 +67,18 @@ function Routes() {
 
           }} /> :
         <div>
-        {smDown ? <NavMobile /> : <NavPcVersionWrapper />}
-        <AddEntryWrapper />
-        <SnackbarComp />
-        <Route exact path='/' component={LandingPage} />
-        <Route exact path='/entries' component={EntriesPageWrapper} />
-        <Route exact path='/entries/:id' component={EntryWrapper} />
-        <Route exact path='/signup' component={SignPageWrapper} />
-        <Route exact path='/login' component={SignPageWrapper} />
-        <Route exact path='/profile' component={Profile} />
-        <Route exact path='/contact' component={Contact} />
-        <Route exact path='/aboutus' component={Aboutus} />
+          {smDown ? <NavMobile /> : <NavPcVersionWrapper />}
+          <BackButton />
+          <AddEntryWrapper />
+          <SnackbarComp isMobile={smDown} />
+          <Route exact path='/' component={LandingPage} />
+          <Route exact path='/entries' component={EntriesPageWrapper} />
+          <Route exact path='/entries/:id' component={EntryWrapper} />
+          <Route exact path='/signup' component={SignPageWrapper} />
+          <Route exact path='/login' component={SignPageWrapper} />
+          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/contact' component={Contact} />
+          <Route exact path='/aboutus' component={Aboutus} />
         </div>}
 
     </div>

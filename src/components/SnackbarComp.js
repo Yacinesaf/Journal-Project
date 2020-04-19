@@ -9,6 +9,7 @@ class SnackbarComp extends Component {
     return (
       <div>
         <Snackbar
+        anchorOrigin={{vertical: this.props.isMobile ? 'top' : 'bottom', horizontal : "center"}}
           onClose={this.props.hideSnackbar}
           open={this.props.show}
           autoHideDuration={3000}>
@@ -22,9 +23,9 @@ class SnackbarComp extends Component {
 }
 
 const mapStateToProps = state => ({
-  show : state.snackbar.show,
-  message : state.snackbar.message,
-  color : state.snackbar.color
+  show: state.snackbar.show,
+  message: state.snackbar.message,
+  color: state.snackbar.color
 })
 
 

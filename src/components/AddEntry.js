@@ -60,12 +60,12 @@ function AddEntry({ addEntry, showSnackbar }) {
         fullScreen
         onEscapeKeyDown={() => setIsDialogOpen(false)}
         open={isDialogOpen}>
-        <DialogContent style={{ paddingLeft: smDown ? 20 : 50, backgroundColor: '#f4f6f8' }}>
-          <IconButton onClick={() => setIsDialogOpen(false)} style={{ float: 'right', paddingRight: 15 }}>
-            <CancelIcon style={{ color: '#5254aa', fontSize: smDown ? 30 : 60 }} />
+        <DialogContent className={mdDown ? 'appBackground' : ''} style={{ paddingLeft: smDown ? 20 : 50, backgroundColor: '#f4f6f8' }}>
+          <IconButton onClick={() => setIsDialogOpen(false)} style={{ position : "absolute", top : 15, right : 15 }}>
+            <CancelIcon style={{ color: '#5254aa', fontSize: smDown ? 30 : 50 }} />
           </IconButton>
           <Grid container justify='center'>
-            <Grid item xs={11}  lg={5}>
+            <Grid item xs={11}  lg={6} style={{paddingTop : 40}}>
               <Typography variant={smDown ? 'h6' : 'h5'} style={{ color: '#5254aa', fontWeight: 550, paddingBottom: smDown ? 10 : 20 }} >Title</Typography>
               <TextField
                 onChange={(e) => setJournalTilte(e.target.value)}
