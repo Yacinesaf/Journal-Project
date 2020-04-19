@@ -12,6 +12,8 @@ import NavPcVersionWrapper from './components/NavPcVersionWrapper';
 import AddEntryWrapper from './components/AddEntryWrapper';
 import loadingImg from './assets/loading.svg'
 import Profile from './components/Profile';
+import Contact from './components/Contact';
+import Aboutus from './components/Aboutus';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import NavMobile from './components/NavMobile';
@@ -73,6 +75,8 @@ function Routes() {
         <Route exact path='/signup' component={SignPageWrapper} />
         <Route exact path='/login' component={SignPageWrapper} />
         <Route exact path='/profile' component={Profile} />
+        <Route exact path='/contact' component={Contact} />
+        <Route exact path='/aboutus' component={Aboutus} />
         </div>}
 
     </div>
