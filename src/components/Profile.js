@@ -12,7 +12,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 function Profile() {
 
   const theme = useTheme();
-  const xsOnly = useMediaQuery(theme.breakpoints.only('xs'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   return (
 

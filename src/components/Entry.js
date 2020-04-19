@@ -1,16 +1,22 @@
 import React from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, IconButton } from '@material-ui/core';
 import '../style.css'
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import {useHistory} from 'react-router-dom'
 
 function Entry({ title, body, reading }) {
+  const history = useHistory()
   const theme = useTheme();
   const xsOnly = useMediaQuery(theme.breakpoints.only('xs'));
 
   return (
     <div>
-      <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ minHeight: '100vh', paddingTop: 64, backgroundColor: '#f2f2f2' }}>
+      <IconButton  onClick={()=> history.push('/entries')}>
+        <ArrowBackIosIcon fontSize='large' style={{color : 'rgb(82, 84, 170)'}} />
+      </IconButton>
+      <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ minHeight: 'calc(100vh - 64px)', backgroundColor: '#f2f2f2' }}>
         <Grid item xs={10} >
           <Typography variant='h3' style={{ fontWeight: 550, textAlign: 'left', paddingTop: 100 }} color='initial'>{title}</Typography>
         </Grid>

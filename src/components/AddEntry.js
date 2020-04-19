@@ -11,6 +11,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 function AddEntry({ addEntry, showSnackbar }) {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const [journalTitle, setJournalTilte] = React.useState('')
   const [journalContent, setJournalContent] = React.useState('')
   const [isDialogOpen, setIsDialogOpen] = React.useState(false)
@@ -31,7 +32,7 @@ function AddEntry({ addEntry, showSnackbar }) {
     }
   }
   const closeDialog = () => {
-    setIsDialogOpen(true)
+    setIsDialogOpen(false)
   };
 
   return (
@@ -39,11 +40,11 @@ function AddEntry({ addEntry, showSnackbar }) {
       <div
         onClick={() => setIsDialogOpen(true)}
         style={{
-          display : 'flex',
-          justifyContent : 'center',
-          alignItems : 'center',
-          height :smDown ? 15 : 35,
-          width :smDown ? 15 : 35,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: smDown ? 15 : 35,
+          width: smDown ? 15 : 35,
           position: 'fixed',
           bottom: smDown ? 20 : 40,
           right: smDown ? 'calc(50% - 27.5px)' : 40,
@@ -59,13 +60,13 @@ function AddEntry({ addEntry, showSnackbar }) {
         fullScreen
         onEscapeKeyDown={() => setIsDialogOpen(false)}
         open={isDialogOpen}>
-        <DialogContent style={{ paddingLeft: 50, backgroundColor: '#f4f6f8' }}>
+        <DialogContent style={{ paddingLeft: smDown ? 20 : 50, backgroundColor: '#f4f6f8' }}>
           <IconButton onClick={() => setIsDialogOpen(false)} style={{ float: 'right', paddingRight: 15 }}>
-            <CancelIcon style={{ color: '#5254aa', fontSize: 60 }} />
+            <CancelIcon style={{ color: '#5254aa', fontSize: smDown ? 30 : 60 }} />
           </IconButton>
           <Grid container justify='center'>
-            <Grid item xs={5}>
-              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >Title</Typography>
+            <Grid item xs={11}  lg={5}>
+              <Typography variant={smDown ? 'h6' : 'h5'} style={{ color: '#5254aa', fontWeight: 550, paddingBottom: smDown ? 10 : 20 }} >Title</Typography>
               <TextField
                 onChange={(e) => setJournalTilte(e.target.value)}
                 required
@@ -74,10 +75,21 @@ function AddEntry({ addEntry, showSnackbar }) {
                 id="title"
                 type="text"
                 fullWidth
-                style={{ margin: '0px 0px 40px', backgroundColor: 'white' }}
+                style={{ margin: 0, marginBottom : smDown ? 20 : 40, backgroundColor: 'white' }}
               />
-              <Typography variant='h5' style={{ color: '#5254aa', fontWeight: 550, paddingBottom: 20 }} >What's on your mind</Typography>
-              <TextareaAutosize onChange={(e) => setJournalContent(e.target.value)} className='textArea' placeholder='Type Here...' style={{ borderRadius: 5, minHeight: 400, width: 'calc(100% - 40px)', padding: 20, fontFamily: 'Roboto', fontSize: 16, backgroundColor: 'white' }} />
+              <Typography variant={smDown ? 'h6' : 'h5'} style={{ color: '#5254aa', fontWeight: 550, paddingBottom: smDown ? 10 : 20 }} >What's on your mind</Typography>
+              <TextareaAutosize
+                onChange={(e) => setJournalContent(e.target.value)}
+                className='textArea' placeholder='Type Here...'
+                style={{
+                  borderRadius: 5,
+                  minHeight: smDown ? 300 : 400,
+                  width: 'calc(100% - 40px)',
+                  padding: 20,
+                  fontFamily: 'Roboto',
+                  fontSize: 16,
+                  backgroundColor: 'white'
+                }} />
               <Button
                 disabled={isLoading}
                 onClick={() => {
@@ -91,14 +103,21 @@ function AddEntry({ addEntry, showSnackbar }) {
                     })
                 }}
                 variant='contained'
-                style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: 18 }}
+                style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: smDown ? 14 : 18 }}
               >
                 {isLoading ? <CircularProgress size={20} style={{ color: 'white', padding: '5px 25px' }} /> : 'Submit'}
               </Button>
             </Grid>
-            <Grid item xs={6} style={{ paddingTop: 120, paddingLeft: 20 }}>
-              <div style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', height: 400 }} />
-            </Grid>
+            {mdDown ? null :
+              <Grid item lg={6} style={{ paddingTop: 120, paddingLeft: 20 }}>
+                <div style={{ 
+                  backgroundImage: `url(${bgImg})`, 
+                  backgroundSize: 'contain', 
+                  backgroundRepeat : 'no-repeat', 
+                  backgroundPosition: 'center', 
+                  width: '100%', height: 400
+                }} />
+              </Grid>}
           </Grid>
         </DialogContent>
       </Dialog>
