@@ -13,12 +13,13 @@ function Profile() {
 
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   return (
 
     <div>
       {mdDown ?
         <div style={{ minHeight: '100vh' }}>
-          <div style={{paddingTop : 60}}>
+          <div style={{paddingTop : smDown ? 60 : 100}}>
             <Avatar style={{ height: 140, width: 140, margin: '0px auto' }} src={defaultPic} />
             <Grid container justify='center' className='appBackground' style={{ paddingTop: 20 }}>
               <Grid item xs={11}>

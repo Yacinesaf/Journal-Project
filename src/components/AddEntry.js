@@ -8,7 +8,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
-function AddEntry({ addEntry, showSnackbar }) {
+function AddEntry({ addEntry, showSnackbar, userId }) {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -21,6 +21,7 @@ function AddEntry({ addEntry, showSnackbar }) {
     let date = new Date();
     let day = date.getDate()
     return {
+      userId : userId,
       body: journalContent,
       title: journalTitle,
       date: {

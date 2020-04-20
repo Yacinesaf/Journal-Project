@@ -11,7 +11,7 @@ class AddEntryWrapper extends Component {
     if (['/login', '/signup', '/', '/about'].includes(this.props.location.pathname) || (['/contact', '/aboutus'].includes(this.props.location.pathname) && !this.props.userId)) {
       return null
     } else {
-      return <AddEntry addEntry={this.props.addEntry} showSnackbar={this.props.showSnackbar} />
+      return <AddEntry userId={this.props.userId} addEntry={this.props.addEntry} showSnackbar={this.props.showSnackbar} />
     }
 
   }
