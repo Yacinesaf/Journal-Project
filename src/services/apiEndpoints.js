@@ -7,11 +7,12 @@ require('firebase/auth')
 
 function getRandomImage() {
   return axios.get("https://api.unsplash.com/photos/random?client_id=uxmW_PR6Zn3N6vc5Zsc2pQJVOwzezAXoPBSOi1eXa4A")
-    .then(res => res.data.urls.regular)
+  .then(res => res.data.urls.regular)
 }
 function getEntries() {
+  var user = firebase.auth().currentUser;
   let db = firebase.firestore(firebaseApp);
-  return db.collection('entries').orderBy('date', 'desc').limit(8)
+  return db.collection('entries').orderBy('date', 'desc').where('userId', '==', user.uid).limit(8)
     .get()
     .then(function (querySnapshot) {
       let entries = querySnapshot.docs.map(doc => {
@@ -31,12 +32,14 @@ function getEntries() {
 }
 
 function switchEntries(docs, direction) {
+  var user = firebase.auth().currentUser;
   let db = firebase.firestore(firebaseApp);
   var lastVisible = direction !== 'next' ? docs.start : docs.end;
   if (direction === 'next') {
     return db.collection("entries")
       .orderBy("date", 'desc')
       .startAfter(lastVisible)
+      .where('userId', '==', user.uid)
       .limit(8)
       .get()
       .then(function (querySnapshot) {
@@ -59,6 +62,7 @@ function switchEntries(docs, direction) {
     return db.collection('entries')
       .orderBy("date", 'asc')
       .startAfter(lastVisible)
+      .where('userId', '==', user.uid)
       .limit(8)
       .get()
       .then(function (querySnapshot) {
@@ -80,8 +84,10 @@ function switchEntries(docs, direction) {
 }
 
 function getEntriesCount() {
+  var user = firebase.auth().currentUser;
   let db = firebase.firestore(firebaseApp);
   return db.collection('entries')
+    .where('userId', '==', user.uid)
     .get()
     .then(function (querySnapshot) {
       return querySnapshot.docs.length
@@ -89,8 +95,9 @@ function getEntriesCount() {
 }
 
 function getEntry(id) {
+  var user = firebase.auth().currentUser;
   let db = firebase.firestore(firebaseApp);
-  var docRef = db.collection("entries").doc(id);
+  var docRef = db.collection("entries").where('userId', '==', user.uid).doc(id);
 
   return docRef.get().then(function (doc) {
     let obj = doc.data();
