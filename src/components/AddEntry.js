@@ -8,7 +8,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
-function AddEntry({ addEntry, showSnackbar, userId, getTotalCount }) {
+function AddEntry({ addEntry, showSnackbar, userId }) {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -54,6 +54,7 @@ function AddEntry({ addEntry, showSnackbar, userId, getTotalCount }) {
           backgroundColor: 'rgb(82, 84, 170)',
           borderRadius: 100,
           padding: 20,
+          zIndex : 2
         }}>
         <AddIcon fontSize={smDown ? 'default' : 'large'} style={{ color: '#F5F5F5' }} />
       </div>
@@ -97,7 +98,6 @@ function AddEntry({ addEntry, showSnackbar, userId, getTotalCount }) {
                   addEntry(generateEntry()).then(() => {
                     showSnackbar('Entry created', 'success')
                     setIsLoading(false)
-                    getTotalCount()
                     closeDialog()
                   })
                     .catch(error => {

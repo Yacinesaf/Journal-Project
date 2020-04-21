@@ -27,7 +27,8 @@ class NavMobile extends Component {
                 boxShadow: '0 -5px 5px -5px #3333',
                 borderRadius: 4,
                 backgroundColor: 'rgb(82, 84, 170)',
-                height: 56
+                height: 56,
+                zIndex : 1,
               }} >
                 <Grid container justify='center' alignItems='center' style={{ height: '100%' }}>
                   <Grid onClick={() => { history.push('/entries') }} item xs={2} style={{ padding: '8px 12px', textAlign: 'center' }}>

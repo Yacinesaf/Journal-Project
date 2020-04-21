@@ -8,8 +8,10 @@ import store from '../reduxStore/store';
 import defaultPic from '../assets/defaultProfilePic.svg'
 import '../style.css'
 import logo from '../assets/logo.png'
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 function NavPcVersion({ userId, profilePic }) {
+  const scrolledDown = useScrollTrigger({threshold : 650});
   let history = useHistory();
   let location = useLocation();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,8 +20,8 @@ function NavPcVersion({ userId, profilePic }) {
     <div>
       <AppBar
         elevation={location.pathname === '/' ? 0 : 4}
-        color={location.pathname === '/' ? 'transparent' : 'inherit'}
-        style={location.pathname === '/' ? {paddingTop : 10} : { backgroundColor: 'rgb(82, 84, 170)' }}>
+        color={location.pathname === '/' && !scrolledDown ? 'transparent' : 'inherit'}
+        style={location.pathname === '/' && !scrolledDown ? { paddingTop: 10 } : { backgroundColor: 'rgb(82, 84, 170)' }}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', color: 'white', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
             <img style={{ width: 40, height: 40 }} alt='logo' src={logo} />
@@ -39,7 +41,6 @@ function NavPcVersion({ userId, profilePic }) {
               <Link to='/login' style={{ textDecoration: 'none' }}>
                 <Button className='buttonStyle' style={{ marginRight: 20 }}>Sing in</Button>
               </Link>
-
               <Link to='/signup' style={{ textDecoration: 'none' }}>
                 <Button className='buttonStyle' variant='outlined' color='inherit' style={{ borderRadius: 4 }}>Get Started</Button>
               </Link>

@@ -30,5 +30,8 @@ export default function (state = initialState, action) {
       }
     case 'SET_TOTAL_COUNT':
       return { ...state, totalCount: action.payload }
+    case 'INCREMENT_TOTAL_COUNT':
+      return { ...state, totalCount: state.totalCount + 1 }
+
   }
 }

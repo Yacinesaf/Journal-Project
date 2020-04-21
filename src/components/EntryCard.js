@@ -8,7 +8,7 @@ function EntryCard({ object }) {
   return (
     <Card className='cardShadow'
       style={{
-        height: 280,
+        height: 260,
         width: '100%',
         borderRadius: 15,
         backgroundImage: `url(${object.img})`,
@@ -24,7 +24,7 @@ function EntryCard({ object }) {
             <Typography variant='caption' style={{ color: 'white', fontWeight: 500, textShadow: '3px 3px 0px rgba(0,0,0,0.2)' }} >{object.date.year}</Typography>
           </div>
         </div>
-        <div style={{ height: 'calc(280px - 150px)', display: 'flex', alignItems: 'flex-end', padding: 20, }}>
+        <div style={{ height: 'calc(260px - 150px)', display: 'flex', alignItems: 'flex-end', padding: 20, }}>
           <Typography style={{ color: 'white', fontWeight: 500, textOverflow: 'ellipsis', overflow: 'hidden', textAlign : 'left', whiteSpace: 'nowrap',  maxWidth : 200, maxHeight : 25 }} >{object.title ? object.title : 'No title'}</Typography>
         </div>
         <div style={{ backgroundColor: 'black', height: '100%', width: '100%', opacity: 1 }} />

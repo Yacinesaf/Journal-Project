@@ -15,8 +15,6 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const [currentPage, setCurrentPage] = React.useState(1)
-  console.log(totalCount)
-
 
   return (
     <div className='appBackground' style={{ minHeight: 'calc(100vh - 64px)', paddingTop: smDown ? 0 : 64 }}>
@@ -42,8 +40,8 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
             </Grid>
           </Grid>
           :
-          <Grid container justify='center' style={{ paddingTop: 20, paddingBottom: entries.length > 1 && entries.length <= 8 && smDown ? 100 : 0 }}>
-            <Grid item xs={12} sm={11} md={10} lg={10} xl={8} style={{ display: 'flex' }}>
+          <Grid container justify='center' style={{ paddingTop: 20, paddingBottom: totalCount <= 8 && smDown ? 100 : 0 }}>
+            <Grid item xs={12} sm={11} md={10} lg={8} xl={6} style={{ display: 'flex' }}>
               <Grid container justify={smDown ? 'center' : null}>
                 {entries.map((x, i) => (
                   <Grid key={i} item xs={11} sm={11} md={6} lg={3} xl={3} style={{ padding: 15 }}>

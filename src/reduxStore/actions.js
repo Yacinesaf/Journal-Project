@@ -12,6 +12,7 @@ export const fetchEntries = () => dispatch => {
 export const addEntry = (entry) => dispatch => {
   return createEntry(entry).then(function (obj) {
     getEntries().then(res => {
+      dispatch({type : 'INCREMENT_TOTAL_COUNT'})
       dispatch({ type: 'SET_ENTRIES', payload: res.entries })
       dispatch({ type: 'SET_BOUNDRYDOCS', payload: res.docs })
       dispatch({ type: 'SET_FETCHING_ENTRIES', payload: false });
@@ -20,7 +21,6 @@ export const addEntry = (entry) => dispatch => {
 }
 
 export const entriesTotalCount = () => dispatch => {
-  console.log('called')
   getEntriesCount().then(res => {
     dispatch({ type: 'SET_TOTAL_COUNT', payload: res })
   })

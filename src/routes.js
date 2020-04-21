@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import firebase from 'firebase'
 import SignPageWrapper from './components/SignPageWrapper';
 import store from './reduxStore/store';
@@ -24,23 +24,18 @@ function Routes() {
 
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  let [changedPath, setChangedPath] = React.useState(false)
-  let [isLoading, setIsLoading] = React.useState(true)
-  let history = useHistory()
+  let [changedPath, setChangedPath] = React.useState(false);
+  let [isLoading, setIsLoading] = React.useState(true);
+  let history = useHistory();
+  let location = useLocation();
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       store.dispatch({ type: 'SET_USER', payload: { id: user.uid, email: user.email } })
       if (!changedPath) {
-        history.push('/entries')
+        history.push(location.pathname)
         setChangedPath(true)
       }
     }
-    // else {
-    //   if (!changedPath) {
-    //     history.push('/login')
-    //     setChangedPath(true)
-    //   }
-    // }
     setIsLoading(false)
   });
   return (

@@ -39,7 +39,7 @@ function Contact(props) {
             className='textArea' placeholder='Type Here...'
             style={{
               borderRadius: 5,
-              minHeight: smDown ? 300 : 250,
+              minHeight: smDown ? 200 : 250,
               width: 'calc(100% - 40px)',
               padding: 20,
               fontFamily: 'Roboto',
@@ -49,7 +49,7 @@ function Contact(props) {
           <Button
             fullWidth
             variant='contained'
-            style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: smDown ? 14 : 18 }}>
+            style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: smDown ? 14 : 18, marginBottom : smDown ? 100 : 0 }}>
             Submit
           </Button>
         </Grid>
