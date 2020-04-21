@@ -37,6 +37,9 @@
   animation: float 4s ease-in-out infinite;
   overflow: hidden;
 }
+.buttonLanding {
+  font-family: 'Baloo Bhaina 2', cursive;;
+}
 
 @keyframes float {
   0% {

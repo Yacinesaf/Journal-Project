@@ -19,7 +19,7 @@ function NavPcVersion({ userId, profilePic }) {
       <AppBar
         elevation={location.pathname === '/' ? 0 : 4}
         color={location.pathname === '/' ? 'transparent' : ''}
-        style={location.pathname === '/' ? {paddingTop : 15} : { backgroundColor: 'rgb(82, 84, 170)' }}>
+        style={location.pathname === '/' ? {paddingTop : 10} : { backgroundColor: 'rgb(82, 84, 170)' }}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', color: 'white', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
             <img style={{ width: 40, height: 40 }} alt='logo' src={logo} />
