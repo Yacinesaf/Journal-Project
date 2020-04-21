@@ -18,13 +18,12 @@ function Profile() {
 
     <div>
       {store.getState().user.id ?
-
         mdDown ?
           <div style={{ minHeight: '100vh' }}>
             <div style={{ paddingTop: smDown ? 60 : 100 }}>
               <Avatar style={{ height: 140, width: 140, margin: '0px auto' }} src={defaultPic} />
               <Grid container justify='center' className='appBackground' style={{ paddingTop: 20 }}>
-                <Grid item xs={11}>
+                <Grid item xs={11} style={{paddingBottom : 30}}>
                   <Grid container justify='center'>
                     <Grid item xs={10} sm={7} style={{ padding: '20px 0px' }}>
                       <Typography variant='h6'>Username</Typography>

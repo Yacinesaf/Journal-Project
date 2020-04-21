@@ -12,8 +12,8 @@ function Contact(props) {
 
   return (
     <div>
-      <Grid container justify='center' style={{ paddingTop: smDown ? 80 : 140 }}>
-        <Grid item xs={11} md ={6} lg={5}>
+      <Grid container justify='center' style={{ paddingTop: smDown ? 60 : 140 }}>
+        <Grid item xs={11} md={6} lg={5}>
           <Typography variant={smDown ? 'body1' : 'h6'} style={{ color: '#5254aa', fontWeight: 550, paddingBottom: smDown ? 5 : 10 }} >Your email</Typography>
           <TextField
             required
@@ -39,7 +39,7 @@ function Contact(props) {
             className='textArea' placeholder='Type Here...'
             style={{
               borderRadius: 5,
-              minHeight: smDown ? 200 : 250,
+              minHeight: smDown ? 180 : 250,
               width: 'calc(100% - 40px)',
               padding: 20,
               fontFamily: 'Roboto',
@@ -49,7 +49,7 @@ function Contact(props) {
           <Button
             fullWidth
             variant='contained'
-            style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: smDown ? 14 : 18, marginBottom : smDown ? 100 : 0 }}>
+            style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: smDown ? 14 : 18, marginBottom: smDown ? 100 : 0 }}>
             Submit
           </Button>
         </Grid>

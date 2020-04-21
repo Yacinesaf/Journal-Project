@@ -105,7 +105,7 @@ function AddEntry({ addEntry, showSnackbar, userId }) {
                     })
                 }}
                 variant='contained'
-                style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: smDown ? 14 : 18 }}
+                style={{ float: 'right', marginTop: 30, backgroundColor: '#5254aa', color: '#F5F5F5', fontSize: smDown ? 14 : 18, marginBottom : 25 }}
               >
                 {isLoading ? <CircularProgress size={20} style={{ color: 'white', padding: '5px 25px' }} /> : 'Submit'}
               </Button>

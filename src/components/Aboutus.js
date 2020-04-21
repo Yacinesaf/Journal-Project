@@ -22,11 +22,12 @@ function Aboutus(props) {
 
   return (
     <div>
-      <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ paddingTop: smDown ? 40 : 100 }}>
+      <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ paddingTop: 100 }}>
         <Grid item xs={12}>
           <Grid container justify='center' alignContent='center'>
-            <Grid item xs={11} sm={10} lg={5} style={{ paddingRight: mdDown ? 0 : 50 }}>
-              <Typography variant={mdDown ? 'body1' : 'h6'} style={{ textAlign: mdDown ? 'center' : 'left' }} >
+            <Grid item xs={10} lg={5} style={{ paddingRight: mdDown ? 0 : 50, paddingBottom : smDown ? 40 : 0 }}>
+            <Typography variant={smDown ? 'h5' : 'h4'} style={{fontWeight : 450}}>About us</Typography>
+              <Typography variant={mdDown ? 'body1' : 'h6'} style={{ textAlign: 'left', paddingTop : 20 }} >
                 {lorem}
               </Typography>
             </Grid>

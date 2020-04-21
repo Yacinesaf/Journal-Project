@@ -58,7 +58,7 @@ function MobileNavLoggedOut() {
               </p>
             </ListItem>
             <Divider variant='fullWidth' style={{ backgroundColor: '#dbdbdb' }} />
-            <ListItem onClick={() => { closeMenu(); history.push('/about') }} style={{ padding: '10px 0px', display: 'flex', justifyContent: 'center' }}>
+            <ListItem onClick={() => { closeMenu(); history.push('/aboutus') }} style={{ padding: '10px 0px', display: 'flex', justifyContent: 'center' }}>
               <p style={{ color: 'white', fontWeight: 100, margin: 0, fontSize: 12 }}>
                 About us
               </p>

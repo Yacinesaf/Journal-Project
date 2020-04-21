@@ -15,12 +15,12 @@ function BackButton(props) {
       {['/', '/entries'].includes(location.pathname) || !store.getState().user.id ? null :
         <ArrowBackIosIcon
           onClick={() => history.push('/entries')}
-          fontSize='large'
+          fontSize={smDown ? '' : 'large'}
           style={{
             color: 'rgb(82, 84, 170)',
             paddingLeft: 25,
             position: "absolute",
-            top: smDown ? 30 : 100,
+            top: smDown ? 20 : 100,
             cursor: 'pointer'
           }} />
       }

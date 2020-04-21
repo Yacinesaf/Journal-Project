@@ -128,7 +128,7 @@ function LandingPage() {
                   risus sed mattis tempus, elit orci efficitur urna, quis efficitur urna ligula eu ante. Ut eu nisi at quam posuere molestie sed id mauris.
               </Typography>
               </Grid>
-              <Grid className='floating' item xs={11} sm={6} md={5} style={{ paddingLeft: smDown ? 0 : 50 }}>
+              <Grid className='floating' item xs={11} sm={6} md={5} style={{ paddingLeft: smDown ? 0 : 50, paddingBottom : smDown ? 25 : 0 }}>
                 <img alt='img' src={thirdAsset} style={{ height: smOnly ? 300 : (xsOnly ? 200 : 500), width: '100%' }} />
               </Grid>
             </Grid>
