@@ -37,6 +37,11 @@
   animation: float 4s ease-in-out infinite;
   overflow: hidden;
 }
+.floating2 {
+  transform: translatey(0px);
+  animation: float 3s ease-in-out infinite;
+  overflow: hidden;
+}
 
 @keyframes float {
   0% {

@@ -21,7 +21,7 @@ function MobileNavLoggedOut() {
       <div style={{ flexGrow: 1 }}>
         <img onClick={() => history.push('/')} style={{ width: 40, height: 40, padding: '12px 0px 0px 24px', position: 'absolute' }} alt='logo' src={location.pathname === '/' ? logo : logoColored} />
       </div>
-      <IconButton onClick={() => setShowSlideMenu(true)} style={{ padding: '16px 24px 0px 0px  ' }}>
+      <IconButton onClick={() => setShowSlideMenu(true)} style={{ padding: '16px 24px 0px 0px', position : 'absolute', right : 0 }}>
         <MenuIcon style={{ color: location.pathname !== '/' ? 'rgb(82, 84, 170)' : 'white' }} />
       </IconButton>
       <Slide
