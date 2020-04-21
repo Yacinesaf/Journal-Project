@@ -15,6 +15,7 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const [currentPage, setCurrentPage] = React.useState(1)
+  console.log(totalCount)
 
 
   return (
@@ -23,8 +24,8 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
         <div style={{ widht: '100%', textAlign: 'center' }}>
           <Typography variant={smDown ? "h5" : 'h3'} style={{ color: '#212121', textAlign: 'center', paddingTop: 30, fontWeight: smDown ? 450 : 400 }}>{`Welcome ${emailToUsername(email)}`}</Typography>
           {!entries.length && !fetchingEntries ?
-            <div style={{ width: '100%', paddingTop : 100 }}>
-              <img alt='empty' src={emptyState} style={{ height: mdDown ? '' : 500, width : smDown ? 250 : '500px' }} />
+            <div style={{ width: '100%', paddingTop: 100 }}>
+              <img alt='empty' src={emptyState} style={{ height: mdDown ? '' : 500, width: smDown ? 250 : '500px' }} />
             </div>
             : null}
         </div>
@@ -41,7 +42,7 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
             </Grid>
           </Grid>
           :
-          <Grid container justify='center' style={{ paddingTop: 20 }}>
+          <Grid container justify='center' style={{ paddingTop: 20, paddingBottom: entries.length > 1 && entries.length <= 8 && smDown ? 100 : 0 }}>
             <Grid item xs={12} sm={11} md={10} lg={10} xl={8} style={{ display: 'flex' }}>
               <Grid container justify={smDown ? 'center' : null}>
                 {entries.map((x, i) => (

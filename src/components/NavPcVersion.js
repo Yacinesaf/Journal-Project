@@ -18,7 +18,7 @@ function NavPcVersion({ userId, profilePic }) {
     <div>
       <AppBar
         elevation={location.pathname === '/' ? 0 : 4}
-        color={location.pathname === '/' ? 'transparent' : ''}
+        color={location.pathname === '/' ? 'transparent' : 'inherit'}
         style={location.pathname === '/' ? {paddingTop : 10} : { backgroundColor: 'rgb(82, 84, 170)' }}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', color: 'white', display: 'flex', flexGrow: 1, alignItems: 'center' }}>

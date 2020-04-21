@@ -20,6 +20,7 @@ export const addEntry = (entry) => dispatch => {
 }
 
 export const entriesTotalCount = () => dispatch => {
+  console.log('called')
   getEntriesCount().then(res => {
     dispatch({ type: 'SET_TOTAL_COUNT', payload: res })
   })

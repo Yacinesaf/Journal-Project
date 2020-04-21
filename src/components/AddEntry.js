@@ -8,7 +8,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
-function AddEntry({ addEntry, showSnackbar, userId }) {
+function AddEntry({ addEntry, showSnackbar, userId, getTotalCount }) {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -97,6 +97,7 @@ function AddEntry({ addEntry, showSnackbar, userId }) {
                   addEntry(generateEntry()).then(() => {
                     showSnackbar('Entry created', 'success')
                     setIsLoading(false)
+                    getTotalCount()
                     closeDialog()
                   })
                     .catch(error => {

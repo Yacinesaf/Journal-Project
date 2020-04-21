@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import '../style.css'
 import { connect } from 'react-redux'
-import { addEntry, showSnackbar } from '../reduxStore/actions.js'
+import { addEntry, showSnackbar, entriesTotalCount } from '../reduxStore/actions.js'
 import AddEntry from './AddEntry';
 
 
@@ -11,7 +11,7 @@ class AddEntryWrapper extends Component {
     if (['/login', '/signup', '/', '/about'].includes(this.props.location.pathname) || (['/contact', '/aboutus'].includes(this.props.location.pathname) && !this.props.userId)) {
       return null
     } else {
-      return <AddEntry userId={this.props.userId} addEntry={this.props.addEntry} showSnackbar={this.props.showSnackbar} />
+      return <AddEntry getTotalCount={entriesTotalCount} userId={this.props.userId} addEntry={this.props.addEntry} showSnackbar={this.props.showSnackbar} />
     }
 
   }
@@ -23,4 +23,4 @@ const mapStateToProps = state => ({
   userId: state.user.id
 })
 
-export default connect(mapStateToProps, { addEntry, showSnackbar })(withRouter(AddEntryWrapper))
+export default connect(mapStateToProps, { addEntry, showSnackbar, entriesTotalCount })(withRouter(AddEntryWrapper))
