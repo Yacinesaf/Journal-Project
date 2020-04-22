@@ -27,7 +27,7 @@ function EntriesPage({ entries, fetchingEntries, email, boundryDocs, totalCount,
             </div>
             : null}
         </div>
-        {entries.length && fetchingEntries ?
+        {fetchingEntries ?
           <Grid container justify='center' style={{ paddingTop: 20 }}>
             <Grid item xs={12} sm={11} md={10} lg={10} xl={8} style={{ display: 'flex' }}>
               <Grid container justify={smDown ? 'center' : null}>
