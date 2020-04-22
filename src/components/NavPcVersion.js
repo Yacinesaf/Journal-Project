@@ -2,7 +2,7 @@ import React from 'react';
 import { Toolbar, AppBar, Button, IconButton, Typography, Avatar, Menu, MenuItem } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { signOut } from '../services/apiEndpoints'
 import store from '../reduxStore/store';
 import defaultPic from '../assets/defaultProfilePic.svg'
@@ -11,8 +11,7 @@ import logo from '../assets/logo.png'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 function NavPcVersion({ userId, profilePic }) {
-  const scrolledDown = useScrollTrigger({threshold : 650});
-  let history = useHistory();
+  const scrolledDown = useScrollTrigger({ threshold: 650 });
   let location = useLocation();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -78,7 +77,6 @@ function NavPcVersion({ userId, profilePic }) {
           onClick={() => signOut().then(() => {
             store.dispatch({ type: 'LOG_OUT', payload: { id: null, email: '' } })
             setAnchorEl(null)
-            // history.push('/login')
           })} >
           <ExitToAppIcon style={{ paddingRight: 10 }} />
           <Typography variant='caption' >Sign out</Typography>

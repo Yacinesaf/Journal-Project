@@ -3,7 +3,6 @@ import '../style.css'
 import { fetchEntries, entriesTotalCount, changingEntries } from '../reduxStore/actions'
 import { connect } from 'react-redux'
 import EntriesPage from './EntriesPage';
-import { Redirect } from 'react-router';
 
 class EntriesPageWrapper extends Component {
   constructor() {

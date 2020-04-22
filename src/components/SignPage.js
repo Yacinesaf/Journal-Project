@@ -5,7 +5,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import signState from '../assets/loginAsset.svg'
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import '../style.css'
 import { useTheme } from '@material-ui/core/styles';
@@ -17,7 +17,6 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  let history = useHistory();
   let location = useLocation();
   const [showingPassword, setShowingPassword] = useState(false);
   const [password, setPassword] = useState(null)
@@ -93,7 +92,6 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
                   setUser(email, password)
                     .then(res => {
                       showSnackbar('Successfully signed up', 'success')
-                      history.push("/entries")
                     })
                     .catch(error => {
                       showSnackbar(error.message, 'error')
@@ -102,8 +100,6 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
                   loginAction(email, password)
                     .then(res => {
                       showSnackbar('Successfully signed in', 'success')
-                      // console.log(his)
-                      // history.push("/entries")
                     })
                     .catch(error => {
                       showSnackbar(error.message, 'error')

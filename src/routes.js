@@ -25,29 +25,19 @@ function Routes() {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   let [changedPath, setChangedPath] = React.useState(false);
-  let [changedPath2, setChangedPath2] = React.useState(false);
   let [isLoading, setIsLoading] = React.useState(true);
   let history = useHistory();
   let location = useLocation();
   firebase.auth().onAuthStateChanged(function (user) {
-    // console.log(!!user)
-    console.log(location)
     if (user) {
-      console.log("have user")
       store.dispatch({ type: 'SET_USER', payload: { id: user.uid, email: user.email } })
       if (['/login', '/signup', '/', '/aboutus'].includes(location.pathname)) {
         history.push('/entries')
       }
-
-      // if (!changedPath) {
-      //   // history.push(location.pathname)
-      //   setChangedPath(true)
-      // }
     } else {
-      console.log("no user")
-      if (!changedPath2) {
+      if (!changedPath) {
         history.push('/login')
-        // setChangedPath2(true)
+        setChangedPath(true)
       }
 
     }

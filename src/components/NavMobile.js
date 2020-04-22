@@ -28,7 +28,7 @@ class NavMobile extends Component {
                 borderRadius: 4,
                 backgroundColor: 'rgb(82, 84, 170)',
                 height: 56,
-                zIndex : 1,
+                zIndex: 1,
               }} >
                 <Grid container justify='center' alignItems='center' style={{ height: '100%' }}>
                   <Grid onClick={() => { history.push('/entries') }} item xs={2} style={{ padding: '8px 12px', textAlign: 'center' }}>
@@ -45,7 +45,6 @@ class NavMobile extends Component {
                   <Grid
                     onClick={() => signOut().then(() => {
                       store.dispatch({ type: 'LOG_OUT', payload: { id: null, email: '' } })
-                      history.push('/login')
                     })}
                     item xs={2}
                     style={{ padding: '8px 12px', textAlign: 'center' }}>
