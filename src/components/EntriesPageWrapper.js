@@ -30,7 +30,7 @@ class EntriesPageWrapper extends Component {
         />
       );
     } else {
-      return <Redirect to='/login' />
+      return null
     }
   }
 }

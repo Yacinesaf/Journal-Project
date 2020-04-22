@@ -7,15 +7,16 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 function Entry({ title, body, reading }) {
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <div>
       <Grid className='appBackground' container justify='center' alignContent='flex-start' style={{ minHeight: '100vh' }}>
         <Grid item xs={11} md={10} >
-          <Typography variant={mdDown ? 'h4' : 'h3'} style={{ fontWeight: 550, textAlign: mdDown ? 'center' : 'left', paddingTop: 130 }} color='initial'>{title}</Typography>
+          <Typography variant={smDown ? 'h5' : 'h3'} style={{ fontWeight: 550, textAlign: mdDown ? 'center' : 'left', paddingTop:smDown ? 60 :  130 }} color='initial'>{title}</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Grid container justify='center' alignContent='center' style={{ paddingTop: 50 }}>
+          <Grid container justify='center' alignContent='center' style={{ paddingTop: smDown ? 25 : 50 }}>
             <Grid item xs={11} sm={10} lg={5} style={{ paddingRight: mdDown ? 0 : 50 }}>
               <Typography variant={mdDown ? 'h6' : 'h5'} style={{ textAlign: mdDown ? 'center' : 'left' }} >{body}</Typography>
             </Grid>

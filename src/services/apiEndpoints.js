@@ -97,7 +97,7 @@ function getEntriesCount() {
 function getEntry(id) {
   var user = firebase.auth().currentUser;
   let db = firebase.firestore(firebaseApp);
-  var docRef = db.collection("entries").where('userId', '==', user.uid).doc(id);
+  var docRef = db.collection("entries").doc(id);
 
   return docRef.get().then(function (doc) {
     let obj = doc.data();

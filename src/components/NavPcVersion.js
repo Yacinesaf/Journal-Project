@@ -77,8 +77,8 @@ function NavPcVersion({ userId, profilePic }) {
           style={{ display: 'felx', alignItems: 'center', padding: 10 }}
           onClick={() => signOut().then(() => {
             store.dispatch({ type: 'LOG_OUT', payload: { id: null, email: '' } })
-            history.push('/login')
             setAnchorEl(null)
+            // history.push('/login')
           })} >
           <ExitToAppIcon style={{ paddingRight: 10 }} />
           <Typography variant='caption' >Sign out</Typography>

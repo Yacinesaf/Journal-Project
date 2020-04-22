@@ -12,7 +12,7 @@ function BackButton(props) {
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <div>
-      {['/', '/entries'].includes(location.pathname) || !store.getState().user.id ? null :
+      {['/', '/entries', '/login', '/signup'].includes(location.pathname) || !store.getState().user.id ? null :
         <ArrowBackIosIcon
           onClick={() => history.push('/entries')}
           fontSize={smDown ? '' : 'large'}
