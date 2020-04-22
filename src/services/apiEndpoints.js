@@ -143,7 +143,7 @@ function signOut() {
 }
 
 function getParagraph() {
-  return fetch("https://mashape-community-skate-ipsum.p.rapidapi.com/2/0/JSON", {
+  return fetch("https://mashape-community-skate-ipsum.p.rapidapi.com/1/0/JSON", {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "mashape-community-skate-ipsum.p.rapidapi.com",

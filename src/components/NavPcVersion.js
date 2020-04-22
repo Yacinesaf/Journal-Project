@@ -38,7 +38,7 @@ function NavPcVersion({ userId, profilePic }) {
                 <Button className='buttonStyle' style={{ margin: '0px 20px' }}>About</Button>
               </Link>
               <Link to='/login' style={{ textDecoration: 'none' }}>
-                <Button className='buttonStyle' style={{ marginRight: 20 }}>Sing in</Button>
+                <Button className='buttonStyle' style={{ marginRight: 20 }}>Log In</Button>
               </Link>
               <Link to='/signup' style={{ textDecoration: 'none' }}>
                 <Button className='buttonStyle' variant='outlined' color='inherit' style={{ borderRadius: 4 }}>Get Started</Button>

@@ -47,6 +47,7 @@ function AddEntry({ addEntry, showSnackbar, userId }) {
           height: smDown ? 15 : 35,
           width: smDown ? 15 : 35,
           position: 'fixed',
+          cursor: 'pointer',
           bottom: smDown ? 20 : 40,
           right: smDown ? 'calc(50% - 27.5px)' : 40,
           boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
@@ -85,7 +86,7 @@ function AddEntry({ addEntry, showSnackbar, userId }) {
                 className='textArea' placeholder='Type Here...'
                 style={{
                   borderRadius: 5,
-                  minHeight: smDown ? 300 : 400,
+                  minHeight: smDown ? 200 : 400,
                   width: 'calc(100% - 40px)',
                   padding: 20,
                   fontFamily: 'Roboto',

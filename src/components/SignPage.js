@@ -54,7 +54,7 @@ function SignPage({ setUser, loginAction, showSnackbar }) {
               <LockOutlinedIcon />
             </Avatar>
             <Typography align='center' variant='h5'>
-              {location.pathname === '/signup' ? 'Sign Up' : 'Sign In'}
+              {location.pathname === '/signup' ? 'Sign Up' : 'Log In'}
             </Typography>
             <form style={{ width: '100%' }}>
               <TextField
