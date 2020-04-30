@@ -35,10 +35,9 @@ function Routes() {
         history.push('/entries')
       }
     } else {
-      console.log(location.pathname)
       if (!['/login', '/signup', '/', '/aboutus'].includes(location.pathname) && !changedPath) {
         history.push('/login')
-      setChangedPath(true)
+        setChangedPath(true)
       }
 
     }
