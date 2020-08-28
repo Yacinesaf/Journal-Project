@@ -11,7 +11,7 @@ import logo from '../assets/logo.png'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 function NavPcVersion({ userId, profilePic }) {
-  const scrolledDown = useScrollTrigger({ threshold: 650 });
+  const scrolledDown = useScrollTrigger({ threshold: 650, disableHysteresis: true });
   let location = useLocation();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
