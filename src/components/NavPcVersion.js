@@ -20,7 +20,7 @@ function NavPcVersion({ userId, profilePic }) {
       <AppBar
         elevation={location.pathname === '/' ? 0 : 4}
         color={location.pathname === '/' && !scrolledDown ? 'transparent' : 'inherit'}
-        style={location.pathname === '/' && !scrolledDown ? { paddingTop: 10 } : { backgroundColor: 'rgb(82, 84, 170)' }}>
+        style={location.pathname === '/' && !scrolledDown ? { paddingTop: 10 } : { backgroundColor: 'rgb(82, 84, 170)', padding : 10 }}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', color: 'white', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
             <img style={{ width: 40, height: 40 }} alt='logo' src={logo} />
